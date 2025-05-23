@@ -1,6 +1,8 @@
 NAME = so_long
 
-SRCS = ./sources/arg_validation.c ./sources/utils.c ./sources/main.c
+SRC_FILES = utils.c arg_validation.c map_parsing.c checking_walls.c open_map.c main.c
+
+SRCS = $(addprefix ./sources/, $(SRC_FILES))
 
 OBJS = $(SRCS:.c=.o)
 

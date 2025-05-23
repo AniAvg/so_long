@@ -29,5 +29,6 @@ void	open_map(char *path)
 		return ;
 	line = get_map_lines(fd);
 	map_lines = ft_split(line, '\n');
+	
 	free(line);
 }
