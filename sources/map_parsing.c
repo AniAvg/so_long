@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 11:18:00 by anavagya          #+#    #+#             */
-/*   Updated: 2025/05/23 17:20:05 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/02 18:26:44 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	row_count_check(char **map_lines, int row_count, int column_count)
 {
 	int		i;
 	int		j;
+	int		len;
 	char	*arr;
 
 	i = 0;
@@ -23,6 +24,7 @@ int	row_count_check(char **map_lines, int row_count, int column_count)
 	arr = (char *)malloc(row_count + 2);
 	if (!arr)
 		return (0);
+	len = 0;
 	while (j < column_count)
 	{
 		i = 0;
@@ -32,7 +34,8 @@ int	row_count_check(char **map_lines, int row_count, int column_count)
 			i++;
 		}
 		arr[i] = '\0';
-		if (ft_strlen(arr) != row_count)
+		len = ft_strlen(arr);
+		if (len != row_count)
 			return (free(arr), 0);
 		free(arr);////
 		j++;
@@ -43,22 +46,21 @@ int	row_count_check(char **map_lines, int row_count, int column_count)
 int	column_count_check(char **map_lines, int row_count, int column_count)
 {
 	int		i;
-	char	*arr;
+	int		len;
 
 	i = 0;
-	//column_count = ft_strlen(map_lines[i]);
-	// while (map_lines[row_count])
-	// 	row_count++; 
+	len = 0;
 	while (i < row_count)
 	{
-		if (ft_strlen(map_lines[i]) != column_count)
+		len = ft_strlen(map_lines[i]);
+		if (len != column_count)
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int	characters_count_check(char **map_lines, int row_count, char c)// E P C
+int	characters_count_check(char **map_lines, int row_count, char c)
 {
 	int	i;
 	int	count;
@@ -97,5 +99,24 @@ int	valid_characters(char **map_lines, int row_count, int column_count)
 		}
 		i++;
 	}
+	return (1);
+}
+
+int	valid_map(char **map_lines, int row_count, int column_count)
+{
+	if (!row_count_check(map_lines, row_count, column_count))
+		return (0);
+	else if (!column_count_check(map_lines, row_count, column_count))
+		return (0);
+	else if (!checking_walls(map_lines, row_count, column_count))
+		return (0);
+	else if (!valid_characters(map_lines, row_count, column_count))
+		return (0);
+	else if (!characters_count_check(map_lines, row_count, 'E'))
+		return (0);
+	else if (!characters_count_check(map_lines, row_count, 'P'))
+		return (0);
+	else if (!characters_count_check(map_lines, row_count, 'C'))
+		return (0);
 	return (1);
 }

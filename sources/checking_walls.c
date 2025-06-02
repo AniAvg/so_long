@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:21:50 by anavagya          #+#    #+#             */
-/*   Updated: 2025/05/22 16:45:38 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/02 18:10:22 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,16 @@ int	check_left_right_walls(char **map_lines, int row_count)
 		i++;
 	}
 	return (1);
+}
+
+int	checking_walls(char **map_lines, int row_count, int column_count)
+{
+	int	result1;
+	int	result2;
+
+	result1 = check_up_down_walls(map_lines, column_count);
+	result2 = check_left_right_walls(map_lines, row_count);
+	if (result1 == 1 && result2 == 1)
+		return (1);
+	return (0);
 }
