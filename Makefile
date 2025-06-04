@@ -8,13 +8,14 @@ OBJS = $(SRCS:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+MLX_FLAGS	= -Lmlx -lmlx -lXext -lX11 -lm
 
 LIBFT = ./libft/libft.a
 
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -I ./includes -I ./libft  $(OBJS) -L ./libft -lft -o $(NAME)
+	$(CC) $(CFLAGS) -I ./includes -I ./libft  $(OBJS) $(MLX_FLAGS) -L ./libft -lft -o $(NAME)
 
 $(LIBFT) :
 	make -C ./libft all
