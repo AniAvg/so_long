@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:24:18 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/02 14:24:19 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/05 16:24:39 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ void	open_map(char *path)
 	{
 		free(line);
 		free_split(map_lines);
-		close(fd);
+		close(fd);//
 		print_error("Validation Error.\n");
 	}
-	close(fd);
+	if (!close(fd))
+		print_error("Can't close the file.\n");
 	free(line);
 }
