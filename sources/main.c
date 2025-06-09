@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	if (argc > 2)
 		print_error("Error: Wrong Arguments.\nUsage: ./so_long path\n");
 	if (!valid_path(argv[1]))
-		print_error("Invalid path.");
+		print_error("Error: Invalid path\n.");
 	open_map(argv[1]);
 	
 	return (0);

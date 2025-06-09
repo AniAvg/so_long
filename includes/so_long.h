@@ -18,6 +18,8 @@
 # include <fcntl.h>
 # include <../mlx/mlx.h>
 
+# define SIZE 128
+
 // utils.c
 void	print_error(char *str);
 void	free_split(char **str);

@@ -51,9 +51,9 @@ void	open_map(char *path)
 		free(line);
 		free_split(map_lines);
 		close(fd);//
-		print_error("Validation Error.\n");
+		print_error("Error: Validation Error.\n");
 	}
 	if (!close(fd))
-		print_error("Can't close the file.\n");
+		print_error("Error: Can't close the file.\n");
 	free(line);
 }
