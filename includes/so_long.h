@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:29:47 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/10 14:23:27 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/10 14:37:41 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,28 @@ typedef struct	s_game
 	int		steps;
 }	t_game;
 
+typedef struct  s_texture
+{
+	void	*img;
+	int		height;
+	int		width;
+}	t_texture;
+
+typedef struct	s_game
+{
+	void	*mlx;
+	void	*mlx_win;
+	char	**map;
+	t_texture	player;
+	t_texture	wall;
+	t_texture	empty_space;
+	t_texture	collect;
+	t_texture	exit;
+	int		height;
+	int		width;
+	int		collect_count;
+}	t_game;
+
 // utils.c
 void	print_error(char *str);
 void	free_split(char **str);
@@ -76,8 +98,13 @@ int		valid_map(char **map_lines, int row_count, int column_count);
 // open_map.c
 char	*get_map_lines(int fd);
 char	**open_map(char *path);
+char	**open_map(char *path);
 
 // main.c
+void	make_window(t_game *game);
+void	load_textures(t_game *game);
+void	create_map(t_game *game);
+void	put_image(t_game *game, char c, int i, int j);
 void	make_window(t_game *game);
 void	load_textures(t_game *game);
 void	create_map(t_game *game);

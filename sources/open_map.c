@@ -30,7 +30,7 @@ char	*get_map_lines(int fd)
 	return (line);
 }
 
-void	open_map(char *path)
+char	**open_map(char *path)
 {
 	int		fd;
 	int		row_count;
@@ -40,7 +40,7 @@ void	open_map(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		return ;
+		return 0;
 	line = get_map_lines(fd);
 	map_lines = ft_split(line, '\n');
 	column_count = ft_strlen(map_lines[0]);
@@ -56,4 +56,5 @@ void	open_map(char *path)
 	if (!close(fd))
 		print_error("Error: Can't close the file.\n");
 	free(line);
+	return (map_lines);
 }
