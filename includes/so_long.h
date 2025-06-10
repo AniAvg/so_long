@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:29:47 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/09 16:08:48 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/10 14:23:27 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,41 @@
 # include <../mlx/mlx.h>
 
 # define SIZE 128
+# define KEY_W 25
+# define KEY_A 38
+# define KEY_S 39
+# define KEY_D 40
+# define KEY_UP 111
+# define KEY_LEFT 113
+# define KEY_DOWN 116
+# define KEY_RIGHT 114
+# define KEY_ESC 9
 
-typedef struct s_game
+typedef struct  s_texture
+{
+	void	*img;
+	int		height;
+	int		width;
+}	t_texture;
+
+typedef struct	s_game
 {
 	void	*mlx;
 	void	*mlx_win;
-	void	*img;
-	void	*wall;
-	void	*empty_space;
-	void	*player;
-	void	*collect;
-	void	*exit;
-	int		player_pos;
+	char	**map;
+	t_texture	player;
+	t_texture	wall;
+	t_texture	empty_space;
+	t_texture	collect;
+	t_texture	exit;
+	int		player_x;
+	int		player_y;
 	int		height;
 	int		width;
 	int		collect_count;
+	int		steps;
 }	t_game;
+
 // utils.c
 void	print_error(char *str);
 void	free_split(char **str);
@@ -56,7 +75,12 @@ int		valid_map(char **map_lines, int row_count, int column_count);
 
 // open_map.c
 char	*get_map_lines(int fd);
-void	open_map(char *path);
+char	**open_map(char *path);
 
 // main.c
+void	make_window(t_game *game);
+void	load_textures(t_game *game);
+void	create_map(t_game *game);
+void	put_image(t_game *game, char c, int i, int j);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:33:17 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/09 16:25:51 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/10 12:42:46 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,63 @@ void	make_window(t_game *game)
 
 void	load_textures(t_game *game)
 {
-	game->wall = mlx_xpm_file_to_image(game->mlx, "../textures/wall.xpm", SIZE, SIZE);
-	if (!game->wall)
-		print_error("Error: Failed to load the texture!");
-	game->empty_space = mlx_xpm_file_to_image(game->mlx, "../textures/empty_space.xpm", SIZE, SIZE);
-	if (!game->empty_space)
-		print_error("Error: Failed to load the texture!");
-	game->player = mlx_xpm_file_to_image(game->mlx, "../textures/vimpire.xpm", SIZE, SIZE);
-	if (!game->player)
-		print_error("Error: Failed to load the texture!");
-	game->collect = mlx_xpm_file_to_image(game->mlx, "../textures/collectible.xpm", SIZE, SIZE);
-	if (!game->collect)
-		print_error("Error: Failed to load the texture!");
-	game->exit = mlx_xpm_file_to_image(game->mlx, "../textures/exit.xpm", SIZE, SIZE);
-	if (!game->exit)
-		print_error("Error: Failed to load the texture!");
+	game->wall.img = mlx_xpm_file_to_image(game->mlx, "./textures/wall.xpm",
+			&game->wall.width, &game->wall.height);
+	if (!game->wall.img)
+		print_error("Error: Failed to load the texture!\n");
+	game->player.img = mlx_xpm_file_to_image(game->mlx, "./textures/vimpire.xpm",
+			&game->player.width, &game->player.height);
+	if (!game->player.img)
+		print_error("Error: Failed to load the texture!\n");
+	game->empty_space.img = mlx_xpm_file_to_image(game->mlx, "./textures/empty_space.xpm",
+			&game->empty_space.width, &game->empty_space.height);
+	if (!game->empty_space.img)
+		print_error("Error: Failed to load the texture!\n");
+	game->collect.img = mlx_xpm_file_to_image(game->mlx, "./textures/collectible.xpm",
+			&game->collect.width, &game->collect.height);
+	if (!game->collect.img)
+		print_error("Error: Failed to load the texture!\n");
+	game->exit.img = mlx_xpm_file_to_image(game->mlx, "./textures/exit.xpm",
+			&game->exit.width, &game->exit.height);
+	if (!game->exit.img)
+		print_error("Error: Failed to load the texture!\n");
+}
+
+void	create_map(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game->height)
+	{
+		j = 0;
+		while (j < game->width)
+		{
+			put_image(game, game->map[i][j], i, j);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	put_image(t_game *game, char c, int i, int j)
+{
+	if (c == '1')
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->wall.img,
+			j * SIZE, i * SIZE);
+	else if (c == '0')
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->empty_space.img,
+			j * SIZE, i * SIZE);
+	else if (c == 'P')
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->player.img,
+			j * SIZE, i * SIZE);
+	else if (c == 'C')
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->collect.img,
+			j * SIZE, i * SIZE);
+	else if (c == 'E')
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit.img,
+			j * SIZE, i * SIZE);
 }
 
 int	main(int argc, char **argv)
