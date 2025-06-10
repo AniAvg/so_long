@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:29:47 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/02 17:51:50 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/09 16:08:48 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@
 
 # define SIZE 128
 
+typedef struct s_game
+{
+	void	*mlx;
+	void	*mlx_win;
+	void	*img;
+	void	*wall;
+	void	*empty_space;
+	void	*player;
+	void	*collect;
+	void	*exit;
+	int		player_pos;
+	int		height;
+	int		width;
+	int		collect_count;
+}	t_game;
 // utils.c
 void	print_error(char *str);
 void	free_split(char **str);
