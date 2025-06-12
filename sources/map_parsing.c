@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 11:18:00 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/02 18:26:44 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:36:07 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	row_count_check(char **map_lines, int row_count, int column_count)
 
 	i = 0;
 	j = 0;
-	arr = (char *)malloc(row_count + 2);
-	if (!arr)
-		return (0);
 	len = 0;
 	while (j < column_count)
 	{
+		arr = (char *)malloc(row_count + 1);//+2
+		if (!arr)
+			return (0);
 		i = 0;
 		while (map_lines[i])
 		{
@@ -102,21 +102,21 @@ int	valid_characters(char **map_lines, int row_count, int column_count)
 	return (1);
 }
 
-int	valid_map(char **map_lines, int row_count, int column_count)
+int	valid_map(t_game *game, char **map_lines)
 {
-	if (!row_count_check(map_lines, row_count, column_count))
+	if (!row_count_check(map_lines, game->height, game->width))
 		return (0);
-	else if (!column_count_check(map_lines, row_count, column_count))
+	else if (!column_count_check(map_lines, game->height, game->width))
 		return (0);
-	else if (!checking_walls(map_lines, row_count, column_count))
+	else if (!checking_walls(map_lines, game->height, game->width))
 		return (0);
-	else if (!valid_characters(map_lines, row_count, column_count))
+	else if (!valid_characters(map_lines, game->height, game->width))
 		return (0);
-	else if (!characters_count_check(map_lines, row_count, 'E'))
+	else if (!characters_count_check(map_lines, game->height, 'E'))
 		return (0);
-	else if (!characters_count_check(map_lines, row_count, 'P'))
+	else if (!characters_count_check(map_lines, game->height, 'P'))
 		return (0);
-	else if (!characters_count_check(map_lines, row_count, 'C'))
+	else if (!characters_count_check(map_lines, game->height, 'C'))
 		return (0);
 	return (1);
 }

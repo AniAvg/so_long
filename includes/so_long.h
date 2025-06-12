@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:29:47 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/11 13:04:29 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:59:28 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct	s_game
 	void	*mlx_win;
 	char	**map;
 	t_texture	player;
+	t_texture	player_left;
+	t_texture	player_right;
 	t_texture	wall;
 	t_texture	empty_space;
 	t_texture	collect;
@@ -64,7 +66,7 @@ int		close_game(t_game *game);
 int		valid_path(char *path);
 
 // checking_walls.c
-int		check_left_right_walls(char **map_lines, int row_count);
+int		check_left_right_walls(char **map_lines, int row_count, int column_count);
 int		check_up_down_walls(char **map_lines, int column_count);
 int		checking_walls(char **map_lines, int row_count, int column_count);
 
@@ -73,11 +75,11 @@ int		column_count_check(char **map_lines, int row_count, int column_count);
 int		row_count_check(char **map_lines, int row_count, int column_count);
 int		characters_count_check(char **map_lines, int row_count, char c);
 int		valid_characters(char **map_lines, int row_count, int column_count);
-int		valid_map(char **map_lines, int row_count, int column_count);
+int		valid_map(t_game *game, char **map_lines);
 
 // open_map.c
 char	*get_map_lines(int fd);
-char	**open_map(char *path);
+char	**open_map(t_game *game, char *path);
 
 //movement.c
 void	move_player(t_game *game, int i, int j);

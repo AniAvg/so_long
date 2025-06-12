@@ -1,7 +1,7 @@
 NAME = so_long
 
-SRC_FILES = utils.c arg_validation.c map_parsing.c checking_walls.c open_map.c movement.c \
-			main.c
+SRC_FILES = utils.c arg_validation.c map_parsing.c checking_walls.c validation.c \
+			movement.c main.c
 
 SRCS = $(addprefix ./sources/, $(SRC_FILES))
 
