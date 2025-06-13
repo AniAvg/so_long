@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 11:18:00 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/12 18:36:07 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:52:47 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,28 @@ int	column_count_check(char **map_lines, int row_count, int column_count)
 	return (1);
 }
 
-int	characters_count_check(char **map_lines, int row_count, char c)
+int	characters_count_check(char **map_lines, int row_count, int column_count, char c)
 {
 	int	i;
+	int	j;
 	int	count;
 
 	i = 0;
 	count = 0;
 	while (i < row_count)
 	{
-		if (ft_strchr(map_lines[i], c))
-			count++;
+		j = 0;
+		while (j < column_count)
+		{
+			if (map_lines[i][j] == c)
+				count++;
+			j++;
+		}
 		i++;
 	}
 	if (c == 'C' && count < 1)
 		return (0);
-	else if (count != 1)
+	else if ((c == 'P' && count != 1) || (c == 'E' && count != 1))
 		return (0);
 	return (1);
 }
@@ -91,9 +97,9 @@ int	valid_characters(char **map_lines, int row_count, int column_count)
 		j = 0;
 		while (j < column_count)
 		{
-			if (map_lines[i][j] != '1' || map_lines[i][j] != '0'
-				|| map_lines[i][j] != 'E' || map_lines[i][j] != 'P'
-				|| map_lines[i][j] != 'C')
+			if (map_lines[i][j] != '1' && map_lines[i][j] != '0'
+					&& map_lines[i][j] != 'E' && map_lines[i][j] != 'P'
+					&& map_lines[i][j] != 'C')
 				return (0);
 			j++;
 		}
@@ -112,11 +118,11 @@ int	valid_map(t_game *game, char **map_lines)
 		return (0);
 	else if (!valid_characters(map_lines, game->height, game->width))
 		return (0);
-	else if (!characters_count_check(map_lines, game->height, 'E'))
+	else if (!characters_count_check(map_lines, game->height, game->width, 'E'))
 		return (0);
-	else if (!characters_count_check(map_lines, game->height, 'P'))
+	else if (!characters_count_check(map_lines, game->height, game->width, 'P'))
 		return (0);
-	else if (!characters_count_check(map_lines, game->height, 'C'))
+	else if (!characters_count_check(map_lines, game->height, game->width, 'C'))
 		return (0);
 	return (1);
 }

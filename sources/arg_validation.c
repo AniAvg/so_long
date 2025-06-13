@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 12:03:12 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/02 12:03:19 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:57:16 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	valid_path(char *path)
 	char	*str;
 
 	if (!path)
+		return (0);
+	if (ft_strchr(path, ' '))
 		return (0);
 	str = ft_strrchr(path, '.');
 	if (!str || ft_strlen(str) > 4)

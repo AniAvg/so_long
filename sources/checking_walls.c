@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:21:50 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/12 18:59:11 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/13 14:59:19 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	check_up_down_walls(char **map_lines, int row_count)
 	int	j;
 
 	j = 0;
-	printf("ggggggggggggggggggggggggg%d\n", row_count);
 	while (j < row_count)
 	{
 		if (map_lines[0][j] != '1' || map_lines[row_count-1][j] != '1')
@@ -34,7 +33,7 @@ int	check_left_right_walls(char **map_lines, int row_count, int column_count)
 	i = 0;
 	while (i < row_count)
 	{
-		if (map_lines[i][0] != '1' || map_lines [i][column_count] != '1')
+		if (map_lines[i][0] != '1' || map_lines [i][column_count - 1] != '1')
 			return (0);
 		i++;
 	}

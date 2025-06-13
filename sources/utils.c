@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:43:27 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/11 13:17:31 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:25:39 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@ void	free_game(t_game *game)
 	while (game->map[i])
 	{
 		free(game->map[i]);
+		i++;
 	}
 	free(game->map);
 	mlx_destroy_image(game->mlx, game->player.img);
+	mlx_destroy_image(game->mlx, game->player_left.img);
+	mlx_destroy_image(game->mlx, game->player_right.img);
 	mlx_destroy_image(game->mlx, game->wall.img);
 	mlx_destroy_image(game->mlx, game->empty_space.img);
 	mlx_destroy_image(game->mlx, game->collect.img);

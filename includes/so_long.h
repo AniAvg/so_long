@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:29:47 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/12 18:59:28 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/13 18:01:56 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		checking_walls(char **map_lines, int row_count, int column_count);
 // map_parsing.c
 int		column_count_check(char **map_lines, int row_count, int column_count);
 int		row_count_check(char **map_lines, int row_count, int column_count);
-int		characters_count_check(char **map_lines, int row_count, char c);
+int		characters_count_check(char **map_lines, int row_count, int column_count, char c);
 int		valid_characters(char **map_lines, int row_count, int column_count);
 int		valid_map(t_game *game, char **map_lines);
 
