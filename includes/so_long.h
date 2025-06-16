@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:29:47 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/16 14:53:31 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/16 18:34:09 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # include <../mlx/mlx.h>
 
 # define SIZE 128
-# define KEY_W 25
-# define KEY_A 38
-# define KEY_S 39
-# define KEY_D 40
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
 # define KEY_UP 111
 # define KEY_LEFT 113
 # define KEY_DOWN 116
@@ -85,8 +85,8 @@ char	**open_map(t_game *game, char *path);
 void	map_render(t_game *game);
 void	player_position(t_game *game);
 void	move_player(t_game *game, int i, int j);
-int		handle_keys(t_game *game, int keycode);
-
+//int		handle_keys(t_game *game, int keycode);
+int handle_keys(int keycode, t_game *game);
 // main.c
 void	make_window(t_game *game);
 void	load_textures(t_game *game);
