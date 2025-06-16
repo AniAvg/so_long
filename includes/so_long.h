@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:29:47 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/13 18:01:56 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:53:31 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ char	*get_map_lines(int fd);
 char	**open_map(t_game *game, char *path);
 
 //movement.c
+void	map_render(t_game *game);
+void	player_position(t_game *game);
 void	move_player(t_game *game, int i, int j);
 int		handle_keys(t_game *game, int keycode);
 

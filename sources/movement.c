@@ -6,14 +6,47 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:42:26 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/13 16:31:52 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:06:46 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	map_render(t_game *game)
+{
+	mlx_clear_window(game->mlx, game->mlx_win);
+	create_map(game);
+}
+
+void	player_position(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	game->player_x = 0;
+	game->player_y = 0;
+	while (i < game->height)
+	{
+		j = 0;
+		while (j < game->width)
+		{
+			if (game->map[i][j] == 'P')
+			{
+				game->player_x = i;
+				game->player_y = j;
+				ft_printf("x = %d\ny = %d\n", game->player_x, game->player_y);
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 void	move_player(t_game *game, int i, int j)
 {
+	player_position(game);
 	if (game->map[game->player_y + j][game->player_x + i] == '1')
 		return ;
 	if (game->map[game->player_y + j][game->player_x + i] == 'C')
@@ -29,12 +62,14 @@ void	move_player(t_game *game, int i, int j)
 			game->steps++;
 			exit(0);
 		}
-		return ;	
+		//return ;	
 	}
-	put_image(game, '0', game->player_x, game->player_y);
+	ft_printf("Hiii\n");
+	//put_image(game, '0', game->player_x, game->player_y);
 	game->map[game->player_y][game->player_x] = '0';
 	game->map[game->player_y + j][game->player_x + i] = 'P';
-	put_image(game, 'P', game->player_x + i, game->player_y + j);
+	//put_image(game, 'P', game->player_x + i, game->player_y + j);
+	map_render(game);
 	game->steps++;
 }
 

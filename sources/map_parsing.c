@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 11:18:00 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/13 15:52:47 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:54:17 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	row_count_check(char **map_lines, int row_count, int column_count)
 	len = 0;
 	while (j < column_count)
 	{
-		arr = (char *)malloc(row_count + 1);//+2
+		arr = (char *)malloc(row_count + 1);
 		if (!arr)
 			return (0);
 		i = 0;

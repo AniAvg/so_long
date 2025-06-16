@@ -6,7 +6,7 @@
 /*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:33:17 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/13 18:20:43 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:05:28 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ void	make_window(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		print_error("Error: Failed to initialize MiniLibX.\n");
-	//ft_printf("")
-	game->mlx_win = mlx_new_window(game->mlx, game->height * SIZE,
-			(game->width-1) * SIZE, "so_long");
+	game->mlx_win = mlx_new_window(game->mlx, game->width * SIZE,
+			game->height * SIZE, "so_long"); 
 	if (!game->mlx_win)
 		print_error("Errror: Can't make the window.\n");
 	load_textures(game);
-	create_map(game);
+	//create_map(game);
+	map_render(game);
 	mlx_hook(game->mlx_win, 2, 1L<<0, handle_keys, game);
+	//mlx_key_hook(game->mlx_win, handle_keys, game);
     mlx_hook(game->mlx_win, 17, 0, close_game, game);
 	mlx_loop(game->mlx);
 }
