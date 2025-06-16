@@ -44,7 +44,7 @@ void	free_game(t_game *game)
 		i++;
 	}
 	free(game->map);
-	mlx_destroy_image(game->mlx, game->player.img);
+	mlx_destroy_image(game->mlx, game->current.img);
 	mlx_destroy_image(game->mlx, game->player_left.img);
 	mlx_destroy_image(game->mlx, game->player_right.img);
 	mlx_destroy_image(game->mlx, game->wall.img);
@@ -60,4 +60,26 @@ int	close_game(t_game *game)
 	// 	mlx_destroy_window(game->mlx, game->mlx_win);
 	mlx_destroy_window(game->mlx, game->mlx_win);
 	exit(0);
+}
+
+int count_coins(t_game *game)
+{
+	int i;
+	int j;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (i < game->height)
+	{
+		j = 0;
+		while (j < game->width)
+		{
+			if (game->map[i][j] == 'C')
+		    	count++;
+			j++;
+		}
+		i++;
+	}
+	return (count);
 }

@@ -37,7 +37,7 @@ int	row_count_check(char **map_lines, int row_count, int column_count)
 		len = ft_strlen(arr);
 		if (len != row_count)
 			return (free(arr), 0);
-		free(arr);////
+		free(arr);
 		j++;
 	}
 	return (1);

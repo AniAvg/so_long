@@ -23,11 +23,11 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
-# define KEY_UP 111
-# define KEY_LEFT 113
-# define KEY_DOWN 116
-# define KEY_RIGHT 114
-# define KEY_ESC 9
+# define KEY_UP 65362
+# define KEY_LEFT 65361
+# define KEY_DOWN 65364
+# define KEY_RIGHT 65363
+# define KEY_ESC 65307
 
 typedef struct  s_texture
 {
@@ -48,6 +48,7 @@ typedef struct	s_game
 	t_texture	empty_space;
 	t_texture	collect;
 	t_texture	exit;
+	t_texture	current;
 	int		player_x;
 	int		player_y;
 	int		height;
@@ -61,6 +62,7 @@ void	print_error(char *str);
 void	free_split(char **str);
 void	free_game(t_game *game);
 int		close_game(t_game *game);
+int		count_coins(t_game *game);
 
 // arg_validation.c
 int		valid_path(char *path);
@@ -81,16 +83,23 @@ int		valid_map(t_game *game, char **map_lines);
 char	*get_map_lines(int fd);
 char	**open_map(t_game *game, char *path);
 
-//movement.c
+// load_textures.c
+void	load_player_textures(t_game *game);
+void	load_environment_textures(t_game *game);
+void	load_textures(t_game *game);
+
+// movement.c
 void	map_render(t_game *game);
 void	player_position(t_game *game);
 void	move_player(t_game *game, int i, int j);
-//int		handle_keys(t_game *game, int keycode);
-int handle_keys(int keycode, t_game *game);
-// main.c
+int		handle_keys(int keycode, t_game *game);
+
+// make_window.c
 void	make_window(t_game *game);
-void	load_textures(t_game *game);
 void	create_map(t_game *game);
 void	put_image(t_game *game, char c, int i, int j);
+
+// main.c
+void	init_game(t_game *game);
 
 #endif

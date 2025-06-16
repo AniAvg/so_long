@@ -24,8 +24,8 @@ void	player_position(t_game *game)
 	int	j;
 
 	i = 0;
-	game->player_x = 0;
-	game->player_y = 0;
+	// game->player_x = 0;
+	// game->player_y = 0;
 	while (i < game->height)
 	{
 		j = 0;
@@ -47,12 +47,12 @@ void	player_position(t_game *game)
 void	move_player(t_game *game, int i, int j)
 {
 	player_position(game);
-	if (game->player_x + i < 0 || game->player_x + i >= game->width || 
-        game->player_y + j < 0 || game->player_y + j >= game->height)
-    {
-        return; // Don't move if out of bounds
-    }
-
+	game->collect_count = count_coins(game);
+	// if (game->player_x + i < 0 || game->player_x + i >= game->width || 
+    //     game->player_y + j < 0 || game->player_y + j >= game->height)
+    // {
+    //     return; // Don't move if out of bounds
+    // }
 	if (game->map[game->player_y + j][game->player_x + i] == '1')
 	{
 		printf("tf\n");
@@ -71,7 +71,7 @@ void	move_player(t_game *game, int i, int j)
 			game->steps++;
 			exit(0);
 		}
-		//return ;	
+		return ;	
 	}
 	ft_printf("Hiii\n");
 	//put_image(game, '0', game->player_x, game->player_y);
@@ -86,9 +86,15 @@ int	handle_keys(int keycode, t_game *game)
 {
 	ft_printf("%d\n", keycode);
 	if (keycode == KEY_W || keycode == KEY_UP)
+	{
+		game->player = game->current;
 		move_player(game, 0, -1);
+	}
 	else if (keycode == KEY_S || keycode == KEY_DOWN)
+	{
+		game->player = game->current;
 		move_player(game, 0, 1);
+	}
 	else if (keycode == KEY_A || keycode == KEY_LEFT)
 	{
 		game->player = game->player_left;
@@ -103,4 +109,3 @@ int	handle_keys(int keycode, t_game *game)
 		close_game(game);
 	return (0);
 }
-

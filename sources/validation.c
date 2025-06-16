@@ -37,8 +37,8 @@ char	**open_map(t_game *game, char *path)
 	char	*line;
 	char	**map_lines;
 
-	game->width = 0;
-	game->height = 0;
+	// game->width = 0;
+	// game->height = 0;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		print_error("Error: Can't open file.\n");
@@ -52,7 +52,7 @@ char	**open_map(t_game *game, char *path)
 		free(line);
 		free_split(map_lines);
 		close(fd);
-		print_error("Error: Validation Error.\n");
+		exit(1);
 	}
 	if (close(fd) < 0)
 		print_error("Error: Can't close the file.\n");
