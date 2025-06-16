@@ -111,18 +111,18 @@ int	valid_characters(char **map_lines, int row_count, int column_count)
 int	valid_map(t_game *game, char **map_lines)
 {
 	if (!row_count_check(map_lines, game->height, game->width))
-		return (0);
+		return (ft_putstr_fd("Error: Incorrect number of rows.\n", 2), 0);
 	else if (!column_count_check(map_lines, game->height, game->width))
-		return (0);
+		return (ft_putstr_fd("Error: Incorrect number of columns.\n", 2), 0);
 	else if (!checking_walls(map_lines, game->height, game->width))
-		return (0);
+		return (ft_putstr_fd("Error: Map isn't properly enclosed.\n", 2), 0);
 	else if (!valid_characters(map_lines, game->height, game->width))
-		return (0);
+		return (ft_putstr_fd("Error: Invalid characters.\n", 2), 0);
 	else if (!characters_count_check(map_lines, game->height, game->width, 'E'))
-		return (0);
+		return (ft_putstr_fd("Error: Map must have one exit 'E'.\n", 2), 0);
 	else if (!characters_count_check(map_lines, game->height, game->width, 'P'))
-		return (0);
+		return (ft_putstr_fd("Error: Map must have one player 'P'.\n", 2), 0);
 	else if (!characters_count_check(map_lines, game->height, game->width, 'C'))
-		return (0);
+		return (ft_putstr_fd("Error: Need at least one collectible 'C'.\n", 2), 0);
 	return (1);
 }
