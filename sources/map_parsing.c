@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 11:18:00 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/16 14:54:17 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:15:22 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int	column_count_check(char **map_lines, int row_count, int column_count)
 	return (1);
 }
 
-int	characters_count_check(char **map_lines, int row_count, int column_count, char c)
+int	characters_count_check(char **map_lines, int row_count,
+	int column_count, char c)
 {
 	int	i;
 	int	j;
@@ -119,10 +120,10 @@ int	valid_map(t_game *game, char **map_lines)
 	else if (!valid_characters(map_lines, game->height, game->width))
 		return (ft_putstr_fd("Error: Invalid characters.\n", 2), 0);
 	else if (!characters_count_check(map_lines, game->height, game->width, 'E'))
-		return (ft_putstr_fd("Error: Map must have one exit 'E'.\n", 2), 0);
+		return (ft_putstr_fd("Error: Map must contain 1 exit 'E'.\n", 2), 0);
 	else if (!characters_count_check(map_lines, game->height, game->width, 'P'))
-		return (ft_putstr_fd("Error: Map must have one player 'P'.\n", 2), 0);
+		return (ft_putstr_fd("Error: Map must contain 1 player 'P'.\n", 2), 0);
 	else if (!characters_count_check(map_lines, game->height, game->width, 'C'))
-		return (ft_putstr_fd("Error: Need at least one collectible 'C'.\n", 2), 0);
+		return (ft_putstr_fd("Error: Need at min 1 collectible 'C'.\n", 2), 0);
 	return (1);
 }

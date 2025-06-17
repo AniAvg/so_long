@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:05:58 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/13 16:28:15 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:38:46 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "so_long.h"
+
+// int		is_file_empty()
+// {
+// 	if ()
+// }
 
 char	*get_map_lines(int fd)
 {
@@ -37,8 +41,6 @@ char	**open_map(t_game *game, char *path)
 	char	*line;
 	char	**map_lines;
 
-	// game->width = 0;
-	// game->height = 0;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		print_error("Error: Can't open file.\n");

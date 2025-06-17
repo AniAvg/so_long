@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:33:17 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/16 19:11:37 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:07:27 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,14 @@ int	main(int argc, char **argv)
 
 	game = NULL;
 	game = malloc(sizeof(t_game));
-	if(!game)
+	if (!game)
 		return (1);
-	//init_game(game);
+	init_game(game);
 	if (argc == 1 || argc > 2)
 		print_error("Error: Wrong Arguments.\nUsage: ./so_long map.ber\n");
 	if (!valid_path(argv[1]))
 		print_error("Error: Invalid path.\n");
 	game->map = open_map(game, argv[1]);
 	make_window(game);
-	//mlx_loop(game);
 	return (0);
 }

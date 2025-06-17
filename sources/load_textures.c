@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_textures.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/17 12:17:12 by anavagya          #+#    #+#             */
+/*   Updated: 2025/06/17 12:17:12 by anavagya         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	load_player_textures(t_game *game)
 {
-	game->current.img = mlx_xpm_file_to_image(game->mlx, "./textures/vimpire.xpm",
-		&game->current.width, &game->current.height);
-	if (!game->current.img)
+	game->player.img = mlx_xpm_file_to_image(game->mlx, "./textures/vimpire.xpm",
+		&game->player.width, &game->player.height);
+	if (!game->player.img)
 		print_error("Error: Failed to load player texture!\n");
 	game->player_left.img = mlx_xpm_file_to_image(game->mlx,
 			"./textures/vimpire_left.xpm", &game->player_left.width,
@@ -16,6 +28,7 @@ void	load_player_textures(t_game *game)
 			&game->player_right.height);
 	if (!game->player_right.img)
 		print_error("Error: Failed to load player texture!\n");
+	game->current = game->player;
 }
 
 void	load_environment_textures(t_game *game)

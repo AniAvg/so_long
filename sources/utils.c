@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:43:27 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/13 16:25:39 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:10:01 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	free_game(t_game *game)
 		i++;
 	}
 	free(game->map);
-	mlx_destroy_image(game->mlx, game->current.img);
+	mlx_destroy_image(game->mlx, game->player.img);
 	mlx_destroy_image(game->mlx, game->player_left.img);
 	mlx_destroy_image(game->mlx, game->player_right.img);
 	mlx_destroy_image(game->mlx, game->wall.img);
@@ -56,17 +56,16 @@ void	free_game(t_game *game)
 int	close_game(t_game *game)
 {
 	free_game(game);
-	// if (game->mlx && game->mlx_win)
-	// 	mlx_destroy_window(game->mlx, game->mlx_win);
-	mlx_destroy_window(game->mlx, game->mlx_win);
+	if (game->mlx && game->mlx_win)
+		mlx_destroy_window(game->mlx, game->mlx_win);
 	exit(0);
 }
 
-int count_coins(t_game *game)
+int	count_coins(t_game *game)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -76,7 +75,7 @@ int count_coins(t_game *game)
 		while (j < game->width)
 		{
 			if (game->map[i][j] == 'C')
-		    	count++;
+				count++;
 			j++;
 		}
 		i++;
