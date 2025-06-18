@@ -6,17 +6,11 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:42:26 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/17 17:08:03 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:25:59 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	map_render(t_game *game)
-{
-	mlx_clear_window(game->mlx, game->mlx_win);
-	create_map(game);
-}
 
 void	player_position(t_game *game)
 {
@@ -56,17 +50,16 @@ void	move_player(t_game *game, int i, int j)
 	{
 		if (game->collect_count == 0)
 		{
-			ft_printf("You Win!\n");
 			game->steps++;
+			ft_printf("You Win!\n");
 			exit(0);
 		}
 		return ;
 	}
+	put_image(game, '0', game->player_y, game->player_x);
 	game->map[game->player_y][game->player_x] = '0';
-	//put_image(game, '0', game->player_x, game->player_y);
 	game->map[game->player_y + j][game->player_x + i] = 'P';
-	//put_image(game, 'P', game->player_x + i, game->player_y + j);
-	map_render(game);
+	put_image(game, 'P', game->player_y + j, game->player_x + i);
 	game->steps++;
 }
 
@@ -94,5 +87,6 @@ int	handle_keys(int keycode, t_game *game)
 	}
 	else if (keycode == KEY_ESC)
 		close_game(game);
+	ft_printf("Steps: %d\n", game->steps);
 	return (0);
 }

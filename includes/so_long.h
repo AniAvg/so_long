@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anavagya <anavagya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:29:47 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/16 18:34:09 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:21:51 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		valid_path(char *path);
 
 // checking_walls.c
 int		check_left_right_walls(char **map_lines, int row_count, int column_count);
-int		check_up_down_walls(char **map_lines, int column_count);
+int		check_up_down_walls(char **map_lines, int row_count, int column_count);
 int		checking_walls(char **map_lines, int row_count, int column_count);
 
 // map_parsing.c
@@ -89,7 +89,6 @@ void	load_environment_textures(t_game *game);
 void	load_textures(t_game *game);
 
 // movement.c
-void	map_render(t_game *game);
 void	player_position(t_game *game);
 void	move_player(t_game *game, int i, int j);
 int		handle_keys(int keycode, t_game *game);
