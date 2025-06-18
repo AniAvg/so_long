@@ -79,7 +79,10 @@ int		characters_count_check(char **map_lines, int row_count, int column_count, c
 int		valid_characters(char **map_lines, int row_count, int column_count);
 int		valid_map(t_game *game, char **map_lines);
 
-// open_map.c
+// validation.c
+char	**copy_map(t_game *game);
+void	flood_fill(char **map, t_game *game, int x, int y, int new_color);
+int		is_walls_correct(t_game *game);
 char	*get_map_lines(int fd);
 char	**open_map(t_game *game, char *path);
 
