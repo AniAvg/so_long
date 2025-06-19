@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:05:58 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/19 18:32:48 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/06/19 19:10:58 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ char	**open_map(t_game *game, char *path)
 	{
 		free(line);
 		free_map(game->map);
+		free(game);
 		close(fd);
 		print_error("Error: Invalid map format.\n");
 	}
@@ -148,14 +149,16 @@ char	**open_map(t_game *game, char *path)
 	{
 		free(line);
 		free_map(game->map);
+		free(game);
 		close(fd);
 		exit(1);
 	}
 	if (!is_walls_correct(game))
 	{
+		close(fd);
 		free(line);
 		free_map(game->map);
-		close(fd);
+		free(game);
 		print_error("Error: Map has unreachable collectibles or exit.\n");
 	}
 	close(fd);

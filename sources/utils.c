@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:43:27 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/19 18:50:19 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/06/19 19:16:21 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ void	free_map(char **map)
 
 void	free_game(t_game *game)
 {
+	ft_printf("chgitem = %d\n", game->mlx);
 	if (!game || !game->mlx)
 		return ;
-	free_map(game->map);
+	if(game->map)
+		free_map(game->map);
 	if (game->player.img)
 		mlx_destroy_image(game->mlx, game->player.img);
 	if (game->player_left.img)
@@ -89,11 +91,3 @@ int	count_coins(t_game *game)
 	}
 	return (count);
 }
-
-// ==5395== LEAK SUMMARY:
-// ==5395==    definitely lost: 0 bytes in 0 blocks
-// ==5395==    indirectly lost: 0 bytes in 0 blocks
-// ==5395==      possibly lost: 0 bytes in 0 blocks
-// ==5395==    still reachable: 1,880 bytes in 16 blocks
-// ==5395==         suppressed: 0 bytes in 0 blocks
-

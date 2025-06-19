@@ -46,7 +46,7 @@ void	put_image(t_game *game, char c, int i, int j)
 		mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit.img,
 			j * SIZE, i * SIZE);
 	else
-			return ;
+		return ;
 }
 
 void	create_map(t_game *game)
