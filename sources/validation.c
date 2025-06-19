@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:05:58 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/19 19:10:58 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/06/19 19:21:59 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,12 +125,16 @@ char	**open_map(t_game *game, char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
+	{
+		free(game);
 		print_error("Error: Can't open file.\n");
+	}
 	line = get_map_lines(fd);
 	if (!line || !*line)
 	{
 		free(line);
 		close(fd);
+		free(game);
 		print_error("Error: Map file is empty.\n");
 	}
 	game->map = ft_split(line, '\n');
