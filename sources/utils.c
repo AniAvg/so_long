@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:43:27 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/17 16:10:01 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:50:19 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,46 +18,53 @@ void	print_error(char *str)
 	exit(1);
 }
 
-void	free_split(char **str)
+void	free_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	if (!str || !*str)
+	if (!map || !*map)
 		return ;
-	while (str[i])
+	while (map[i] != NULL)
 	{
-		free(str[i]);
+		free(map[i]);
 		i++;
 	}
-	free(str);
+	free(map);
 }
 
 void	free_game(t_game *game)
 {
-	int	i;
-
-	i = 0;
-	while (game->map[i])
+	if (!game || !game->mlx)
+		return ;
+	free_map(game->map);
+	if (game->player.img)
+		mlx_destroy_image(game->mlx, game->player.img);
+	if (game->player_left.img)
+		mlx_destroy_image(game->mlx, game->player_left.img);
+	if (game->player_right.img)
+		mlx_destroy_image(game->mlx, game->player_right.img);
+	if (game->wall.img)
+		mlx_destroy_image(game->mlx, game->wall.img);
+	if (game->empty_space.img)
+		mlx_destroy_image(game->mlx, game->empty_space.img);
+	if (game->collect.img)
+		mlx_destroy_image(game->mlx, game->collect.img);
+	if (game->exit.img)
+		mlx_destroy_image(game->mlx, game->exit.img);
+	if (game->mlx && game->mlx_win)
+		mlx_destroy_window(game->mlx, game->mlx_win);
+	if (game->mlx)
 	{
-		free(game->map[i]);
-		i++;
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
 	}
-	free(game->map);
-	mlx_destroy_image(game->mlx, game->player.img);
-	mlx_destroy_image(game->mlx, game->player_left.img);
-	mlx_destroy_image(game->mlx, game->player_right.img);
-	mlx_destroy_image(game->mlx, game->wall.img);
-	mlx_destroy_image(game->mlx, game->empty_space.img);
-	mlx_destroy_image(game->mlx, game->collect.img);
-	mlx_destroy_image(game->mlx, game->exit.img);
+	free(game);
 }
 
 int	close_game(t_game *game)
 {
 	free_game(game);
-	if (game->mlx && game->mlx_win)
-		mlx_destroy_window(game->mlx, game->mlx_win);
 	exit(0);
 }
 
@@ -82,3 +89,11 @@ int	count_coins(t_game *game)
 	}
 	return (count);
 }
+
+// ==5395== LEAK SUMMARY:
+// ==5395==    definitely lost: 0 bytes in 0 blocks
+// ==5395==    indirectly lost: 0 bytes in 0 blocks
+// ==5395==      possibly lost: 0 bytes in 0 blocks
+// ==5395==    still reachable: 1,880 bytes in 16 blocks
+// ==5395==         suppressed: 0 bytes in 0 blocks
+

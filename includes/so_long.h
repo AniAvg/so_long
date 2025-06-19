@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:29:47 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/18 15:21:51 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/06/19 16:39:53 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct	s_game
 
 // utils.c
 void	print_error(char *str);
-void	free_split(char **str);
+void	free_map(char **map);
 void	free_game(t_game *game);
 int		close_game(t_game *game);
 int		count_coins(t_game *game);

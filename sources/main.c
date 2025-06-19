@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:33:17 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/17 16:07:27 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:31:58 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	init_game(t_game *game)
 {
 	game->mlx = NULL;
-	game->mlx = NULL;
+	game->mlx_win = NULL;
+	game->map = NULL;
 	game->player_x = 0;
 	game->player_y = 0;
 	game->height = 0;
@@ -28,16 +29,21 @@ int	main(int argc, char **argv)
 {
 	t_game	*game;
 
-	game = NULL;
-	game = malloc(sizeof(t_game));
-	if (!game)
-		return (1);
-	init_game(game);
 	if (argc == 1 || argc > 2)
 		print_error("Error: Wrong Arguments.\nUsage: ./so_long map.ber\n");
 	if (!valid_path(argv[1]))
 		print_error("Error: Invalid path.\n");
+	game = malloc(sizeof(t_game));
+	if (!game)
+		return (1);
+	init_game(game);
 	game->map = open_map(game, argv[1]);
+	if (!game->map)
+	{
+		free_game(game);
+		print_error("Error: Failed to load map.\n");
+	}
 	make_window(game);
+	free_game(game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:42:26 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/18 14:25:59 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:49:59 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	move_player(t_game *game, int i, int j)
 		if (game->collect_count == 0)
 		{
 			game->steps++;
+			free_game(game);
 			ft_printf("You Win!\n");
 			exit(0);
 		}

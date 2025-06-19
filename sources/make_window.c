@@ -28,24 +28,6 @@ void	make_window(t_game *game)
 	mlx_loop(game->mlx);
 }
 
-void	create_map(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < game->height)
-	{
-		j = 0;
-		while (j < game->width)
-		{
-			put_image(game, game->map[i][j], i, j);
-			j++;
-		}
-		i++;
-	}
-}
-
 void	put_image(t_game *game, char c, int i, int j)
 {
 	if (c == '1')
@@ -63,4 +45,24 @@ void	put_image(t_game *game, char c, int i, int j)
 	else if (c == 'E')
 		mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit.img,
 			j * SIZE, i * SIZE);
+	else
+			return ;
+}
+
+void	create_map(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game->height)
+	{
+		j = 0;
+		while (j < game->width)
+		{
+			put_image(game, game->map[i][j], i, j);
+			j++;
+		}
+		i++;
+	}
 }
