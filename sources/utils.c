@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:43:27 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/19 19:16:21 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/06/20 11:55:36 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@ void	free_map(char **map)
 
 void	free_game(t_game *game)
 {
-	ft_printf("chgitem = %d\n", game->mlx);
 	if (!game || !game->mlx)
 		return ;
-	if(game->map)
+	if (game->map)
 		free_map(game->map);
 	if (game->player.img)
 		mlx_destroy_image(game->mlx, game->player.img);

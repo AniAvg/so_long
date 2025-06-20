@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:05:58 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/19 19:21:59 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/06/20 14:19:21 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	**copy_map(t_game *game)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**map_copy;
 
 	i = 0;
@@ -45,7 +45,7 @@ char	**copy_map(t_game *game)
 		i++;
 	}
 	map_copy[i] = '\0';
-	return(map_copy);
+	return (map_copy);
 }
 
 void	flood_fill(char **map, t_game *game, int x, int y, int new_color)
@@ -63,7 +63,7 @@ void	flood_fill(char **map, t_game *game, int x, int y, int new_color)
 	}
 	if (map[x][y] != '0')
 		return ;
-	map[x][y] =  new_color;
+	map[x][y] = new_color;
 	flood_fill(map, game, x - 1, y, new_color);
 	flood_fill(map, game, x + 1, y, new_color);
 	flood_fill(map, game, x, y -1, new_color);
@@ -110,9 +110,19 @@ char	*get_map_lines(int fd)
 	while (1)
 	{
 		tmp = get_next_line(fd);
-		if (!tmp)
-			break ;
-		line = ft_gnl_strjoin(line, tmp);
+		if (!tmp || tmp[0] == '\n')
+		{
+			get_next_line(-1);
+			if (!tmp)
+				break ;
+			free(tmp);
+			free(line);
+			return ("\n");
+		}
+		if (!line)
+			line = ft_gnl_strdup(tmp);
+		else
+			line = ft_gnl_strjoin(line, tmp);
 		free(tmp);
 	}
 	return (line);
@@ -132,29 +142,36 @@ char	**open_map(t_game *game, char *path)
 	line = get_map_lines(fd);
 	if (!line || !*line)
 	{
-		free(line);
 		close(fd);
+		free(line);
 		free(game);
 		print_error("Error: Map file is empty.\n");
 	}
-	game->map = ft_split(line, '\n');
-	if (!game->map || !game->map[0] || !game->map[0][0])
+	if (*line == '\n')
 	{
+		close(fd);
+		//free(line);
+		free(game);
+		print_error("Error: Invalid map format.\n");
+	}
+	game->map = ft_split(line, '\n');
+	if (!game->map)
+	{
+		close(fd);
 		free(line);
 		free_map(game->map);
 		free(game);
-		close(fd);
-		print_error("Error: Invalid map format.\n");
+		print_error("Error: Invalid map format or malloc error.\n");
 	}
 	game->width = ft_strlen(game->map[0]);
 	while (game->map[game->height])
 		game->height++;
 	if (!valid_map(game, game->map))
 	{
+		close(fd);
 		free(line);
 		free_map(game->map);
 		free(game);
-		close(fd);
 		exit(1);
 	}
 	if (!is_walls_correct(game))

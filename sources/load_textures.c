@@ -14,8 +14,9 @@
 
 void	load_player_textures(t_game *game)
 {
-	game->player.img = mlx_xpm_file_to_image(game->mlx, "./textures/vimpire.xpm",
-		&game->player.width, &game->player.height);
+	game->player.img = mlx_xpm_file_to_image(game->mlx,
+			"./textures/vimpire.xpm",
+			&game->player.width, &game->player.height);
 	if (!game->player.img)
 		print_error("Error: Failed to load player texture!\n");
 	game->player_left.img = mlx_xpm_file_to_image(game->mlx,
@@ -34,19 +35,21 @@ void	load_player_textures(t_game *game)
 void	load_environment_textures(t_game *game)
 {
 	game->wall.img = mlx_xpm_file_to_image(game->mlx, "./textures/wall.xpm",
-		&game->wall.width, &game->wall.height);
+			&game->wall.width, &game->wall.height);
 	if (!game->wall.img)
 		print_error("Error: Failed to load wall texture!\n");
-	game->empty_space.img = mlx_xpm_file_to_image(game->mlx, "./textures/empty_space.xpm",
-		&game->empty_space.width, &game->empty_space.height);
+	game->empty_space.img = mlx_xpm_file_to_image(game->mlx,
+			"./textures/empty_space.xpm",
+			&game->empty_space.width, &game->empty_space.height);
 	if (!game->empty_space.img)
 		print_error("Error: Failed to load empty space texture!\n");
-	game->collect.img = mlx_xpm_file_to_image(game->mlx, "./textures/collectible.xpm",
-		&game->collect.width, &game->collect.height);
+	game->collect.img = mlx_xpm_file_to_image(game->mlx,
+			"./textures/collectible.xpm",
+			&game->collect.width, &game->collect.height);
 	if (!game->collect.img)
 		print_error("Error: Failed to load collectible texture!\n");
 	game->exit.img = mlx_xpm_file_to_image(game->mlx, "./textures/exit.xpm",
-		&game->exit.width, &game->exit.height);
+			&game->exit.width, &game->exit.height);
 	if (!game->exit.img)
 		print_error("Error: Failed to load exit texture!\n");
 }
