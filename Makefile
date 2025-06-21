@@ -1,14 +1,14 @@
 NAME = so_long
 
-SRC_FILES = utils.c arg_validation.c map_parsing.c checking_walls.c validation.c \
-			load_textures.c make_window.c movement.c main.c
+SRC_FILES = utils.c arg_validation.c map_parsing.c checking_walls.c check_reachability.c\
+			validation.c load_textures.c make_window.c movement.c main.c
 
 SRCS = $(addprefix ./sources/, $(SRC_FILES))
 
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3
 MLX_FLAGS	= -Lmlx -lmlx -lXext -lX11 -lm
 
 LIBFT = ./libft/libft.a

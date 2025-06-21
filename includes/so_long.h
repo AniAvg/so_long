@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anavagy <anavgya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 16:29:47 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/19 16:39:53 by apatvaka         ###   ########.fr       */
+/*   Created: 2025/06/21 13:38:44 by anavagya          #+#    #+#             */
+/*   Updated: 2025/06/21 14:52:27 by anavagy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@
 # include <fcntl.h>
 # include <../mlx/mlx.h>
 
+# define SCREEN_WIDTH 3840
+# define SCREEN_HEIGHT 2032
 # define SIZE 128
+
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
@@ -29,18 +32,24 @@
 # define KEY_RIGHT 65363
 # define KEY_ESC 65307
 
-typedef struct  s_texture
+typedef struct s_texture
 {
 	void	*img;
 	int		height;
 	int		width;
 }	t_texture;
 
-typedef struct	s_game
+typedef struct s_game
 {
-	void	*mlx;
-	void	*mlx_win;
-	char	**map;
+	void		*mlx;
+	void		*mlx_win;
+	char		**map;
+	int			player_x;
+	int			player_y;
+	int			height;
+	int			width;
+	int			collect_count;
+	int			steps;
 	t_texture	player;
 	t_texture	player_left;
 	t_texture	player_right;
@@ -49,12 +58,6 @@ typedef struct	s_game
 	t_texture	collect;
 	t_texture	exit;
 	t_texture	current;
-	int		player_x;
-	int		player_y;
-	int		height;
-	int		width;
-	int		collect_count;
-	int		steps;
 }	t_game;
 
 // utils.c
@@ -79,10 +82,13 @@ int		characters_count_check(char **map_lines, int row_count, int column_count, c
 int		valid_characters(char **map_lines, int row_count, int column_count);
 int		valid_map(t_game *game, char **map_lines);
 
-// validation.c
+// check_reachability.c
 char	**copy_map(t_game *game);
-void	flood_fill(char **map, t_game *game, int x, int y, int new_color);
-int		is_walls_correct(t_game *game);
+void	flood_fill(char **map, t_game *game, int x, int y);
+int		check_reachability(t_game *game);
+
+// validation.c
+int		map_size(t_game *game);
 char	*get_map_lines(int fd);
 char	**open_map(t_game *game, char *path);
 
