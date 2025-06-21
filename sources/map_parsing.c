@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anavagya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anavagy <anavgya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:28:09 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/21 13:28:11 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/21 17:18:55 by anavagy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	row_count_check(char **map_lines, int row_count, int column_count)
 	int		len;
 	char	*arr;
 
-	i = 0;
 	j = 0;
 	len = 0;
 	while (j < column_count)
@@ -27,12 +26,9 @@ int	row_count_check(char **map_lines, int row_count, int column_count)
 		arr = (char *)malloc(row_count + 1);
 		if (!arr)
 			return (0);
-		i = 0;
-		while (map_lines[i])
-		{
+		i = -1;
+		while (map_lines[++i])
 			arr[i] = map_lines[i][j];
-			i++;
-		}
 		arr[i] = '\0';
 		len = ft_strlen(arr);
 		if (len != row_count)

@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_reachability.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anavagy <anavgya@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/21 18:17:13 by anavagya          #+#    #+#             */
+/*   Updated: 2025/06/21 18:18:58 by anavagy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 char	**copy_map(t_game *game)
 {
 	int		i;
-	int		j;
 	char	**map_copy;
 
 	i = 0;
@@ -12,7 +23,6 @@ char	**copy_map(t_game *game)
 		return (NULL);
 	while (i < game->height)
 	{
-		j = 0;
 		map_copy[i] = (char *)malloc(sizeof(char) * (game->width + 1));
 		if (!map_copy[i])
 		{
@@ -20,15 +30,10 @@ char	**copy_map(t_game *game)
 				free(map_copy[i]);
 			free(map_copy);
 		}
-		while (j < game->width)
-		{
-			map_copy[i][j] = game->map[i][j];
-			j++;
-		}
-		map_copy[i][j] = '\0';
+		ft_strlcpy(map_copy[i], game->map[i], game->width + 1);
 		i++;
 	}
-	map_copy[i] = '\0';
+	map_copy[i] = NULL;
 	return (map_copy);
 }
 
@@ -71,7 +76,8 @@ int	check_reachability(t_game *game)
 		j = 0;
 		while (j < game->width)
 		{
-			if (map_copy[i][j] != 'F' && map_copy[i][j] != '1' && map_copy[i][j] != '0')
+			if (map_copy[i][j] != 'F' && map_copy[i][j] != '1'
+				&& map_copy[i][j] != '0')
 				return (free_map(map_copy), 0);
 			j++;
 		}

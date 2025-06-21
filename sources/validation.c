@@ -6,7 +6,7 @@
 /*   By: anavagy <anavgya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:24:27 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/21 14:47:31 by anavagy          ###   ########.fr       */
+/*   Updated: 2025/06/21 18:10:55 by anavagy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ char	**open_map(t_game *game, char *path)
 	if (*line == '\n')
 	{
 		close(fd);
-
 		free(game);
 		print_error("Error: Invalid map format.\n");
 	}
