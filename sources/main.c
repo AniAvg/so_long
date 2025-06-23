@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anavagya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:26:36 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/21 13:26:42 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:17:29 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 	if (!game)
 		return (1);
 	init_game(game);
-	game->map = open_map(game, argv[1]);
+	game->map = load_map(game, argv[1]);
 	if (!game->map)
 	{
 		free_game(game);

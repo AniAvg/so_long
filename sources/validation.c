@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anavagy <anavgya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:24:27 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/21 18:10:55 by anavagy          ###   ########.fr       */
+/*   Updated: 2025/06/23 18:15:32 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,8 @@ char	*get_map_lines(int fd)
 	return (line);
 }
 
-char	**open_map(t_game *game, char *path)
+void	parse_map(t_game *game, int fd, char *line)
 {
-	int		fd;
-	char	*line;
-
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-	{
-		free(game);
-		print_error("Error: Can't open file.\n");
-	}
-	line = get_map_lines(fd);
 	if (!line || !*line)
 	{
 		close(fd);
@@ -82,9 +72,10 @@ char	**open_map(t_game *game, char *path)
 		free(game);
 		print_error("Error: Invalid map format or malloc error.\n");
 	}
-	game->width = ft_strlen(game->map[0]);
-	while (game->map[game->height])
-		game->height++;
+}
+
+void	validate_map(t_game *game, int fd, char *line)
+{
 	if (!valid_map(game, game->map))
 	{
 		close(fd);
@@ -109,6 +100,25 @@ char	**open_map(t_game *game, char *path)
 		free(game);
 		print_error("Error: Map is too big.\n");
 	}
+}
+
+char	**load_map(t_game *game, char *path)
+{
+	int		fd;
+	char	*line;
+
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		free(game);
+		print_error("Error: Can't open file.\n");
+	}
+	line = get_map_lines(fd);
+	parse_map(game, fd, line);
+	game->width = ft_strlen(game->map[0]);
+	while (game->map[game->height])
+		game->height++;
+	validate_map(game, fd, line);
 	close(fd);
 	free(line);
 	return (game->map);

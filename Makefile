@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRC_FILES = utils.c free.c arg_validation.c map_parsing.c checking_walls.c \
+SRC_FILES = utils.c free.c arg_validation.c map_validation.c checking_walls.c \
 			check_reachability.c validation.c load_textures.c make_window.c \
 			movement.c main.c
 

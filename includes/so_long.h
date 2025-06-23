@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anavagy <anavgya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:38:44 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/21 17:23:39 by anavagy          ###   ########.fr       */
+/*   Updated: 2025/06/23 18:19:11 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_game
 	void		*mlx;
 	void		*mlx_win;
 	char		**map;
+	char		*line;
+	int			fd;
 	int			player_x;
 	int			player_y;
 	int			height;
@@ -62,24 +64,28 @@ typedef struct s_game
 
 // utils.c
 void	print_error(char *str);
+int		count_coins(t_game *game);
+
+// free.c
 void	free_map(char **map);
 void	free_images(t_game *game);
 void	free_game(t_game *game);
 int		close_game(t_game *game);
-int		count_coins(t_game *game);
 
 // arg_validation.c
 int		valid_path(char *path);
 
 // checking_walls.c
-int		check_left_right_walls(char **map_lines, int row_count, int column_count);
+int		check_left_right_walls(char **map_lines, int row_count,
+			int column_count);
 int		check_up_down_walls(char **map_lines, int row_count, int column_count);
 int		checking_walls(char **map_lines, int row_count, int column_count);
 
-// map_parsing.c
+// map_validation.c
 int		column_count_check(char **map_lines, int row_count, int column_count);
 int		row_count_check(char **map_lines, int row_count, int column_count);
-int		characters_count_check(char **map_lines, int row_count, int column_count, char c);
+int		characters_count_check(char **map_lines, int row_count,
+			int column_count, char c);
 int		valid_characters(char **map_lines, int row_count, int column_count);
 int		valid_map(t_game *game, char **map_lines);
 
@@ -91,7 +97,9 @@ int		check_reachability(t_game *game);
 // validation.c
 int		map_size(t_game *game);
 char	*get_map_lines(int fd);
-char	**open_map(t_game *game, char *path);
+void	validate_map(t_game *game, int fd, char *line);
+void	parse_map(t_game *game, int fd, char *line);
+char	**load_map(t_game *game, char *path);
 
 // load_textures.c
 void	load_player_textures(t_game *game);
