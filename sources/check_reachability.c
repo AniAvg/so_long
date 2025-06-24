@@ -6,7 +6,7 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 18:17:13 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/23 18:16:26 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:21:15 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	check_reachability(t_game *game)
 		while (j < game->width)
 		{
 			if (map_copy[i][j] != 'F' && map_copy[i][j] != '1'
-				&& map_copy[i][j] != '0')
+				&& map_copy[i][j] != '0' && map_copy[i][j] != 'M')
 				return (free_map(map_copy), 0);
 			j++;
 		}

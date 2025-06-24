@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anavagya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:31:05 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/21 13:31:07 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:05:45 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	move_player(t_game *game, int i, int j)
 		game->collect_count--;
 		game->map[game->player_y + j][game->player_x + i] = '0';
 	}
+	else if (game->map[game->player_y + j][game->player_x + i] == 'M')
+		close_game(game);
 	else if (game->map[game->player_y + j][game->player_x + i] == 'E')
 	{
 		if (game->collect_count == 0)

@@ -6,7 +6,7 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:38:44 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/23 18:19:11 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:37:55 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,35 @@ typedef struct s_game
 	t_texture	wall;
 	t_texture	empty_space;
 	t_texture	collect;
+	t_texture	collect2;
+	t_texture	collect3;
+	t_texture	collect4;
+	t_texture	enemy;
+	t_texture	enemy2;
+	t_texture	enemy3;
+	t_texture	enemy4;
 	t_texture	exit;
 	t_texture	current;
 }	t_game;
+
+typedef struct s_collect
+{
+	void	*img;
+	void	*collect_img[4];
+	int		index;
+	int		counter;
+	int		anim_speed;
+}	t_collect;
+
+typedef struct s_enemy
+{
+	void	*img;
+	void	*enemy_img[4];
+	int		index;
+	int		counter;
+	int		anim_speed;
+}	t_enemy;
+
 
 // utils.c
 void	print_error(char *str);
@@ -68,6 +94,7 @@ int		count_coins(t_game *game);
 
 // free.c
 void	free_map(char **map);
+void	free_enemy_images(t_game *game);
 void	free_images(t_game *game);
 void	free_game(t_game *game);
 int		close_game(t_game *game);
@@ -103,7 +130,9 @@ char	**load_map(t_game *game, char *path);
 
 // load_textures.c
 void	load_player_textures(t_game *game);
+void	load_collectible_textures(t_game *game);
 void	load_environment_textures(t_game *game);
+void	load_enemy_textures(t_game *game);
 void	load_textures(t_game *game);
 
 // movement.c

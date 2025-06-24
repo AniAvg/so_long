@@ -6,7 +6,7 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:28:09 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/23 18:15:29 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/24 13:31:41 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	characters_count_check(char **map_lines, int row_count,
 		}
 		i++;
 	}
-	if (c == 'C' && count < 1)
+	if ((c == 'C' && count < 1) || (c == 'M' && count < 1))
 		return (0);
 	else if ((c == 'P' && count != 1) || (c == 'E' && count != 1))
 		return (0);
@@ -96,7 +96,7 @@ int	valid_characters(char **map_lines, int row_count, int column_count)
 		{
 			if (map_lines[i][j] != '1' && map_lines[i][j] != '0'
 					&& map_lines[i][j] != 'E' && map_lines[i][j] != 'P'
-					&& map_lines[i][j] != 'C')
+					&& map_lines[i][j] != 'C' && map_lines[i][j] != 'M')
 				return (0);
 			j++;
 		}
@@ -120,6 +120,6 @@ int	valid_map(t_game *game, char **map_lines)
 	else if (!characters_count_check(map_lines, game->height, game->width, 'P'))
 		return (ft_putstr_fd("Error: Map must contain 1 player 'P'.\n", 2), 0);
 	else if (!characters_count_check(map_lines, game->height, game->width, 'C'))
-		return (ft_putstr_fd("Error: Need at min 1 collectible 'C'.\n", 2), 0);
+		return (ft_putstr_fd("Error: Need at min 1 collectible 'C'.\n", 2), 0);;
 	return (1);
 }
