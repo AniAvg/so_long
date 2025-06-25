@@ -6,7 +6,7 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:38:44 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/24 14:37:55 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/25 18:45:36 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,16 @@ typedef struct s_texture
 	int		width;
 }	t_texture;
 
+typedef struct s_anim
+{
+	t_texture	collect[4];
+	t_texture	enemy[4];
+	int		index_c;
+	int		index_e;
+	int		speed_c;
+	int		speed_e;
+}	t_anim;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -57,36 +67,18 @@ typedef struct s_game
 	t_texture	player_right;
 	t_texture	wall;
 	t_texture	empty_space;
-	t_texture	collect;
-	t_texture	collect2;
-	t_texture	collect3;
-	t_texture	collect4;
-	t_texture	enemy;
-	t_texture	enemy2;
-	t_texture	enemy3;
-	t_texture	enemy4;
+	// t_texture	collect;
+	// t_texture	collect2;
+	// t_texture	collect3;
+	// t_texture	collect4;
+	// t_texture	enemy;
+	// t_texture	enemy2;
+	// t_texture	enemy3;
+	// t_texture	enemy4;
 	t_texture	exit;
 	t_texture	current;
+	t_anim		anim;
 }	t_game;
-
-typedef struct s_collect
-{
-	void	*img;
-	void	*collect_img[4];
-	int		index;
-	int		counter;
-	int		anim_speed;
-}	t_collect;
-
-typedef struct s_enemy
-{
-	void	*img;
-	void	*enemy_img[4];
-	int		index;
-	int		counter;
-	int		anim_speed;
-}	t_enemy;
-
 
 // utils.c
 void	print_error(char *str);
@@ -139,6 +131,11 @@ void	load_textures(t_game *game);
 void	player_position(t_game *game);
 void	move_player(t_game *game, int i, int j);
 int		handle_keys(int keycode, t_game *game);
+
+// animation.c
+void	collectible_animation(t_anim *anim);
+void	enemy_animation(t_anim *anim);
+int		loop_hook(t_game *game);
 
 // make_window.c
 void	make_window(t_game *game);

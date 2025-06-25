@@ -24,6 +24,7 @@ void	make_window(t_game *game)
 	load_textures(game);
 	create_map(game);
 	mlx_hook(game->mlx_win, 2, 1L << 0, handle_keys, game);
+	mlx_loop_hook(game->mlx, loop_hook, game);
 	mlx_hook(game->mlx_win, 17, 0, close_game, game);
 	mlx_loop(game->mlx);
 }

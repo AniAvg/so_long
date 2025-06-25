@@ -34,26 +34,29 @@ void	load_player_textures(t_game *game)
 
 void	load_collectible_textures(t_game *game)
 {
-	game->collect.img = mlx_xpm_file_to_image(game->mlx,
+	game->anim.index_c = 0;
+	game->anim.speed_c = 0;
+
+	game->anim.collect[0].img = mlx_xpm_file_to_image(game->mlx,
 			"./textures/collectible.xpm",
-			&game->collect.width, &game->collect.height);
-	if (!game->collect.img)
+			&game->anim.collect[0].width, &game->anim.collect[0].height);
+	if (!game->anim.collect[0].img)
 		print_error("Error: Failed to load collectible texture!\n");
-	// game->collect2.img = mlx_xpm_file_to_image(game->mlx,
-	// 		"./textures/coll2.xpm",
-	// 		&game->collect2.width, &game->collect2.height);
-	// if (!game->collect2.img)
-	// 	print_error("Error: Failed to load collectible texture!\n");
-	// game->collect3.img = mlx_xpm_file_to_image(game->mlx,
-	// 		"./textures/coll3.xpm",
-	// 		&game->collect3.width, &game->collect3.height);
-	// if (!game->collect3.img)
-	// 	print_error("Error: Failed to load collectible texture!\n");
-	// game->collect4.img = mlx_xpm_file_to_image(game->mlx,
-	// 		"./textures/coll4.xpm",
-	// 		&game->collect4.width, &game->collect4.height);
-	// if (!game->collect4.img)
-	// 	print_error("Error: Failed to load collectible texture!\n");
+	game->anim.collect[1].img = mlx_xpm_file_to_image(game->mlx,
+			"./textures/coll2.xpm",
+			&game->anim.collect[1].width, &game->anim.collect[1].height);
+	if (!game->anim.collect[1].img)
+		print_error("Error: Failed to load collectible texture!\n");
+	game->anim.collect[2].img = mlx_xpm_file_to_image(game->mlx,
+			"./textures/coll3.xpm",
+			&game->anim.collect[2].width, &game->anim.collect[2].height);
+	if (!game->anim.collect[2].img)
+		print_error("Error: Failed to load collectible texture!\n");
+	game->anim.collect[3].img = mlx_xpm_file_to_image(game->mlx,
+			"./textures/coll4.xpm",
+			&game->anim.collect[3].width, &game->anim.collect[3].height);
+	if (!game->anim.collect[3].img)
+		print_error("Error: Failed to load collectible texture!\n");
 }
 
 void	load_environment_textures(t_game *game)
@@ -75,22 +78,25 @@ void	load_environment_textures(t_game *game)
 
 void	load_enemy_textures(t_game *game)
 {
-	game->enemy.img = mlx_xpm_file_to_image(game->mlx, "./textures/enemy.xpm",
-			&game->enemy.width, &game->enemy.height);
-	if (!game->enemy.img)
+	game->anim.index_c = 0;
+	game->anim.speed_e = 0;
+
+	game->anim.enemy[0].img = mlx_xpm_file_to_image(game->mlx, "./textures/enemy.xpm",
+		&game->anim.enemy[0].width, &game->anim.enemy[0].height);
+	if (!game->anim.enemy[0].img)
 		print_error("Error: Failed to load enemy texture!\n");
-	// game->enemy2.img = mlx_xpm_file_to_image(game->mlx, "./textures/enemy2.xpm",
-	// 		&game->enemy2.width, &game->enemy2.height);
-	// if (!game->enemy2.img)
-	// 	print_error("Error: Failed to load enemy2 texture!\n");
-	// game->enemy3.img = mlx_xpm_file_to_image(game->mlx, "./textures/enemy3.xpm",
-	// 		&game->enemy3.width, &game->enemy3.height);
-	// if (!game->enemy3.img)
-	// 	print_error("Error: Failed to load enemy3 texture!\n");
-	// game->enemy4.img = mlx_xpm_file_to_image(game->mlx, "./textures/enemy4.xpm",
-	// 		&game->enemy4.width, &game->enemy4.height);
-	// if (!game->enemy4.img)
-	// 	print_error("Error: Failed to load enemy4 texture!\n");
+	game->anim.enemy[1].img = mlx_xpm_file_to_image(game->mlx, "./textures/enemy2.xpm",
+		&game->anim.enemy[1].width, &game->anim.enemy[1].height);
+	if (!game->anim.enemy[1].img)
+		print_error("Error: Failed to load enemy texture!\n");
+	game->anim.enemy[2].img = mlx_xpm_file_to_image(game->mlx, "./textures/enemy3.xpm",
+		&game->anim.enemy[2].width, &game->anim.enemy[2].height);
+	if (!game->anim.enemy[2].img)
+		print_error("Error: Failed to load enemy texture!\n");
+	game->anim.enemy[3].img = mlx_xpm_file_to_image(game->mlx, "./textures/enemy4.xpm",
+		&game->anim.enemy[3].width, &game->anim.enemy[3].height);
+	if (!game->anim.enemy[3].img)
+		print_error("Error: Failed to load enemy texture!\n");
 }
 
 void	load_textures(t_game *game)

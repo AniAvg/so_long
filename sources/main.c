@@ -6,7 +6,7 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:26:36 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/23 18:17:29 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/25 18:38:11 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_game(t_game *game)
 
 int	main(int argc, char **argv)
 {
-	t_game	*game;
+	t_game		*game;
 
 	if (argc == 1 || argc > 2)
 		print_error("Error: Wrong Arguments.\nUsage: ./so_long map.ber\n");

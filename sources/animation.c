@@ -6,31 +6,41 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:28:46 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/24 14:50:33 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/25 18:56:43 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	collectible_animation(t_collect *collect)
+void	collectible_animation(t_anim *anim)
 {
-	collect->counter++;
-    if (collect->counter >= collect->anim_speed)
+	anim->speed_c++;
+    if (anim->speed_c > 10)
 	{
-        collect->counter = 0;
-        collect->index = (collect->index + 1) % 4;
+        anim->speed_c = 0;
+        anim->speed_c++;
+		if (anim->index_c == 4)
+			anim->index_c = 0;
 	}
-	collect->img = collect->collect_img[collect->index];
-	mlx_put_image_to_window(game->mlx, game->win, img, x, y);
 }
 
-void	enemy_animation(t_enemy *enemy)
+void	enemy_animation(t_anim *anim)
 {
-	if (enemy->index == 4)
-		enemy->index = 0;
-	enemy->index++;
-	enemy->img = enemy->enemy_img[enemy->index];
-	enemy->index = (enemy->index + 1) % 4;
+	anim->speed_e++;
+    if (anim->speed_e > 10)
+	{
+        anim->speed_e = 0;
+        anim->speed_e++;
+		if (anim->index_e == 4)
+			anim->index_e = 0;
+	}
+}
+
+int loop_hook(t_game *game)
+{
+	update_animation(game);
+	create_map(game);//es sxal a
+	return (0);
 }
 
 

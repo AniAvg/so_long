@@ -6,7 +6,7 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 18:28:11 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/24 14:23:29 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/25 18:49:57 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,22 @@ void	free_map(char **map)
 
 void	free_enemy_images(t_game *game)
 {
-	if (game->enemy.img)
-		mlx_destroy_image(game->mlx, game->enemy.img);
-	if (game->enemy2.img)
-		mlx_destroy_image(game->mlx, game->enemy2.img);
-	if (game->enemy3.img)
-		mlx_destroy_image(game->mlx, game->enemy3.img);
-	if (game->enemy4.img)
-		mlx_destroy_image(game->mlx, game->enemy4.img);
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (game->anim.enemy[i].img)
+			mlx_destroy_image(game->mlx, game->anim.enemy[i].img);
+		i++;
+	}
 }
 
 void	free_images(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	if (game->player.img)
 		mlx_destroy_image(game->mlx, game->player.img);
 	if (game->player_left.img)
@@ -51,18 +55,16 @@ void	free_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->wall.img);
 	if (game->empty_space.img)
 		mlx_destroy_image(game->mlx, game->empty_space.img);
-	if (game->collect.img)
-		mlx_destroy_image(game->mlx, game->collect.img);
-	// if (game->collect2.img)
-	// 	mlx_destroy_image(game->mlx, game->collect2.img);
-	// if (game->collect3.img)
-	// 	mlx_destroy_image(game->mlx, game->collect3.img);
-	// if (game->collect4.img)
-	// 	mlx_destroy_image(game->mlx, game->collect4.img);
-	// if (game->exit.img)
-	// 	mlx_destroy_image(game->mlx, game->exit.img);
-	// if (game->mlx && game->mlx_win)
-	// 	mlx_destroy_window(game->mlx, game->mlx_win);
+	while (i < 4)
+	{
+		if (game->anim.collect[i].img)
+			mlx_destroy_image(game->mlx, game->anim.collect[i].img);
+		i++;
+	}
+	if (game->exit.img)
+		mlx_destroy_image(game->mlx, game->exit.img);
+	if (game->mlx && game->mlx_win)
+		mlx_destroy_window(game->mlx, game->mlx_win);
 }
 
 void	free_game(t_game *game)
