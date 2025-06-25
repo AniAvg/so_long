@@ -14,35 +14,34 @@
 
 void	collectible_animation(t_anim *anim)
 {
-	anim->speed_c++;
-    if (anim->speed_c > 10)
+	anim->speed++;
+    if (anim->speed > 700)
 	{
-        anim->speed_c = 0;
-        anim->speed_c++;
-		if (anim->index_c == 4)
-			anim->index_c = 0;
+        anim->speed = 0;
+        anim->index++;
+		if (anim->index == 4)
+			anim->index = 0;
 	}
 }
 
 void	enemy_animation(t_anim *anim)
 {
-	anim->speed_e++;
-    if (anim->speed_e > 10)
+	anim->speed++;
+    if (anim->speed > 700)
 	{
-        anim->speed_e = 0;
-        anim->speed_e++;
-		if (anim->index_e == 4)
-			anim->index_e = 0;
+        anim->speed = 0;
+        anim->index++;
+		if (anim->index == 4)
+			anim->index = 0;
 	}
 }
 
-int loop_hook(t_game *game)
+int loop_hook(void *param)
 {
-	update_animation(game);
-	create_map(game);//es sxal a
+	t_game *game = (t_game *)param;
+
+	collectible_animation(&game->anim);
+	enemy_animation(&game->anim);
+	create_map(game);//es hnaravor a sxal a
 	return (0);
 }
-
-
-
-

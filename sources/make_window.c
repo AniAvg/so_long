@@ -23,8 +23,8 @@ void	make_window(t_game *game)
 		print_error("Errror: Can't make the window.\n");
 	load_textures(game);
 	create_map(game);
-	mlx_hook(game->mlx_win, 2, 1L << 0, handle_keys, game);
 	mlx_loop_hook(game->mlx, loop_hook, game);
+	mlx_hook(game->mlx_win, 2, 1L << 0, handle_keys, game);
 	mlx_hook(game->mlx_win, 17, 0, close_game, game);
 	mlx_loop(game->mlx);
 }
@@ -40,12 +40,18 @@ void	put_image(t_game *game, char c, int i, int j)
 	else if (c == 'P')
 		mlx_put_image_to_window(game->mlx, game->mlx_win, game->current.img,
 			j * SIZE, i * SIZE);
-	else if (c == 'C')
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->collect.img,
-			j * SIZE, i * SIZE);
-	else if (c == 'M')
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->enemy.img,
-			j * SIZE, i * SIZE);
+	// else if (c == 'C')
+	// 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->collect.img,
+	// 		j * SIZE, i * SIZE);
+	else if (c == 'C') // Collectible with animation
+		mlx_put_image_to_window(game->mlx, game->mlx_win,
+			game->anim.collect[game->anim.index].img, j * SIZE, i * SIZE);//////
+	// else if (c == 'M')
+	// 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->enemy.img,
+	// 		j * SIZE, i * SIZE);
+	else if (c == 'M') // Enemy (bonus)
+		mlx_put_image_to_window(game->mlx, game->mlx_win,
+			game->anim.enemy[game->anim.index].img, j * SIZE, i * SIZE);///////////
 	else if (c == 'E')
 		mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit.img,
 			j * SIZE, i * SIZE);

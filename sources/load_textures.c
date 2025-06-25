@@ -34,8 +34,8 @@ void	load_player_textures(t_game *game)
 
 void	load_collectible_textures(t_game *game)
 {
-	game->anim.index_c = 0;
-	game->anim.speed_c = 0;
+	game->anim.index = 0;
+	game->anim.speed = 0;
 
 	game->anim.collect[0].img = mlx_xpm_file_to_image(game->mlx,
 			"./textures/collectible.xpm",
@@ -78,9 +78,6 @@ void	load_environment_textures(t_game *game)
 
 void	load_enemy_textures(t_game *game)
 {
-	game->anim.index_c = 0;
-	game->anim.speed_e = 0;
-
 	game->anim.enemy[0].img = mlx_xpm_file_to_image(game->mlx, "./textures/enemy.xpm",
 		&game->anim.enemy[0].width, &game->anim.enemy[0].height);
 	if (!game->anim.enemy[0].img)

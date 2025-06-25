@@ -43,10 +43,12 @@ typedef struct s_anim
 {
 	t_texture	collect[4];
 	t_texture	enemy[4];
-	int		index_c;
-	int		index_e;
-	int		speed_c;
-	int		speed_e;
+	int			index;
+	int			speed;
+	// int		index_c;
+	// int		index_e;
+	// int		speed_c;
+	// int		speed_e;
 }	t_anim;
 
 typedef struct s_game
@@ -135,7 +137,7 @@ int		handle_keys(int keycode, t_game *game);
 // animation.c
 void	collectible_animation(t_anim *anim);
 void	enemy_animation(t_anim *anim);
-int		loop_hook(t_game *game);
+int 	loop_hook(void *param);
 
 // make_window.c
 void	make_window(t_game *game);
