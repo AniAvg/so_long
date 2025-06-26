@@ -16,6 +16,8 @@ LIBFT = ./libft/libft.a
 
 all : $(NAME)
 
+bonus : $(NAME)
+
 $(NAME) : $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) -I ./includes -I ./libft  $(OBJS) $(MLX_FLAGS) -L ./libft -lft -o $(NAME)
 
