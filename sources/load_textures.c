@@ -38,7 +38,6 @@ void	load_collectible_textures(t_game *game)
 	game->anim.speed_c = 0;
 	game->anim.index_e = 0;
 	game->anim.speed_e = 0;
-
 	game->anim.collect[0].img = mlx_xpm_file_to_image(game->mlx,
 			"./textures/collectible.xpm",
 			&game->anim.collect[0].width, &game->anim.collect[0].height);
@@ -80,20 +79,24 @@ void	load_environment_textures(t_game *game)
 
 void	load_enemy_textures(t_game *game)
 {
-	game->anim.enemy[0].img = mlx_xpm_file_to_image(game->mlx, "./textures/enemy.xpm",
-		&game->anim.enemy[0].width, &game->anim.enemy[0].height);
+	game->anim.enemy[0].img = mlx_xpm_file_to_image(game->mlx,
+			"./textures/enemy.xpm",
+			&game->anim.enemy[0].width, &game->anim.enemy[0].height);
 	if (!game->anim.enemy[0].img)
 		print_error("Error: Failed to load enemy texture!\n");
-	game->anim.enemy[1].img = mlx_xpm_file_to_image(game->mlx, "./textures/enemy2.xpm",
-		&game->anim.enemy[1].width, &game->anim.enemy[1].height);
+	game->anim.enemy[1].img = mlx_xpm_file_to_image(game->mlx,
+			"./textures/enemy2.xpm",
+			&game->anim.enemy[1].width, &game->anim.enemy[1].height);
 	if (!game->anim.enemy[1].img)
 		print_error("Error: Failed to load enemy texture!\n");
-	game->anim.enemy[2].img = mlx_xpm_file_to_image(game->mlx, "./textures/enemy3.xpm",
-		&game->anim.enemy[2].width, &game->anim.enemy[2].height);
+	game->anim.enemy[2].img = mlx_xpm_file_to_image(game->mlx,
+			"./textures/enemy3.xpm",
+			&game->anim.enemy[2].width, &game->anim.enemy[2].height);
 	if (!game->anim.enemy[2].img)
 		print_error("Error: Failed to load enemy texture!\n");
-	game->anim.enemy[3].img = mlx_xpm_file_to_image(game->mlx, "./textures/enemy4.xpm",
-		&game->anim.enemy[3].width, &game->anim.enemy[3].height);
+	game->anim.enemy[3].img = mlx_xpm_file_to_image(game->mlx,
+			"./textures/enemy4.xpm",
+			&game->anim.enemy[3].width, &game->anim.enemy[3].height);
 	if (!game->anim.enemy[3].img)
 		print_error("Error: Failed to load enemy texture!\n");
 }

@@ -6,7 +6,7 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:28:09 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/24 13:31:41 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/27 13:46:45 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,6 @@ int	valid_map(t_game *game, char **map_lines)
 	else if (!characters_count_check(map_lines, game->height, game->width, 'P'))
 		return (ft_putstr_fd("Error: Map must contain 1 player 'P'.\n", 2), 0);
 	else if (!characters_count_check(map_lines, game->height, game->width, 'C'))
-		return (ft_putstr_fd("Error: Need at min 1 collectible 'C'.\n", 2), 0);;
+		return (ft_putstr_fd("Error: Need at min 1 collectible 'C'.\n", 2), 0);
 	return (1);
 }

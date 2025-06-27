@@ -6,7 +6,7 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:38:44 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/26 17:38:53 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/27 14:02:19 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ typedef struct s_anim
 {
 	t_texture	collect[4];
 	t_texture	enemy[4];
-	int		index_c;
-	int		index_e;
-	int		speed_c;
-	int		speed_e;
+	int			index_c;
+	int			index_e;
+	int			speed_c;
+	int			speed_e;
 }	t_anim;
 
 typedef struct s_game
@@ -67,14 +67,6 @@ typedef struct s_game
 	t_texture	player_right;
 	t_texture	wall;
 	t_texture	empty_space;
-	// t_texture	collect;
-	// t_texture	collect2;
-	// t_texture	collect3;
-	// t_texture	collect4;
-	// t_texture	enemy;
-	// t_texture	enemy2;
-	// t_texture	enemy3;
-	// t_texture	enemy4;
 	t_texture	exit;
 	t_texture	current;
 	t_anim		anim;
@@ -128,7 +120,9 @@ void	load_enemy_textures(t_game *game);
 void	load_textures(t_game *game);
 
 // movement.c
+void	display_moves(t_game *game);
 void	player_position(t_game *game);
+void	update_player_image(t_game *game, int i, int j);
 void	move_player(t_game *game, int i, int j);
 int		handle_keys(int keycode, t_game *game);
 

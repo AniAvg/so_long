@@ -9,7 +9,7 @@ SRCS = $(addprefix ./sources/, $(SRC_FILES))
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS	= -Lmlx -lmlx -lXext -lX11 -lm
 
 LIBFT = ./libft/libft.a

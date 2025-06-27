@@ -6,11 +6,24 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:31:05 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/24 14:05:45 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/27 14:01:16 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	display_moves(t_game *game)
+{
+	char	*moves;
+	char	*str;
+
+	moves = ft_itoa(game->steps);
+	str = ft_strjoin("Moves: ", moves);
+	mlx_put_image_to_window(game->mlx, game->mlx_win, game->wall.img, 0, 0);
+	mlx_string_put(game->mlx, game->mlx_win, 20, 40, 0xFFFFFF, str);
+	free(moves);
+	free(str);
+}
 
 void	player_position(t_game *game)
 {
@@ -35,6 +48,14 @@ void	player_position(t_game *game)
 	}
 }
 
+void	update_player_image(t_game *game, int i, int j)
+{
+	put_image(game, '0', game->player_y, game->player_x);
+	game->map[game->player_y][game->player_x] = '0';
+	game->map[game->player_y + j][game->player_x + i] = 'P';
+	put_image(game, 'P', game->player_y + j, game->player_x + i);
+}
+
 void	move_player(t_game *game, int i, int j)
 {
 	player_position(game);
@@ -54,16 +75,13 @@ void	move_player(t_game *game, int i, int j)
 		{
 			game->steps++;
 			free_game(game);
-			ft_printf("You Win!\n");
 			exit(0);
 		}
 		return ;
 	}
-	put_image(game, '0', game->player_y, game->player_x);
-	game->map[game->player_y][game->player_x] = '0';
-	game->map[game->player_y + j][game->player_x + i] = 'P';
-	put_image(game, 'P', game->player_y + j, game->player_x + i);
+	update_player_image(game, i, j);
 	game->steps++;
+	display_moves(game);
 }
 
 int	handle_keys(int keycode, t_game *game)
@@ -90,6 +108,5 @@ int	handle_keys(int keycode, t_game *game)
 	}
 	else if (keycode == KEY_ESC)
 		close_game(game);
-	ft_printf("Steps: %d\n", game->steps);
 	return (0);
 }
