@@ -6,7 +6,7 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:38:44 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/27 14:02:19 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/27 15:56:13 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_game
 
 // utils.c
 void	print_error(char *str);
+void	free_with_error(t_game *game, char *str);
 int		count_coins(t_game *game);
 
 // free.c
@@ -139,5 +140,6 @@ void	put_image(t_game *game, char c, int i, int j);
 
 // main.c
 void	init_game(t_game *game);
+void	init_images(t_game *game);
 
 #endif

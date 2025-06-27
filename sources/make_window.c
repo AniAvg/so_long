@@ -16,11 +16,11 @@ void	make_window(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		print_error("Error: Failed to initialize MiniLibX.\n");
+		print_error("Error\nFailed to initialize MiniLibX.\n");
 	game->mlx_win = mlx_new_window(game->mlx, game->width * SIZE,
 			game->height * SIZE, "so_long");
 	if (!game->mlx_win)
-		print_error("Errror: Can't make the window.\n");
+		print_error("Error\nCan't make the window.\n");
 	load_textures(game);
 	create_map(game);
 	mlx_loop_hook(game->mlx, loop_hook, game);

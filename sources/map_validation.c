@@ -6,7 +6,7 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:28:09 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/27 13:46:45 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/27 15:54:29 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,18 +108,18 @@ int	valid_characters(char **map_lines, int row_count, int column_count)
 int	valid_map(t_game *game, char **map_lines)
 {
 	if (!row_count_check(map_lines, game->height, game->width))
-		return (ft_putstr_fd("Error: Incorrect number of rows.\n", 2), 0);
+		return (ft_putstr_fd("Error\nIncorrect number of rows.\n", 2), 0);
 	else if (!column_count_check(map_lines, game->height, game->width))
-		return (ft_putstr_fd("Error: Incorrect number of columns.\n", 2), 0);
+		return (ft_putstr_fd("Error\nIncorrect number of columns.\n", 2), 0);
 	else if (!checking_walls(map_lines, game->height, game->width))
-		return (ft_putstr_fd("Error: Map isn't properly enclosed.\n", 2), 0);
+		return (ft_putstr_fd("Error\nMap isn't properly enclosed.\n", 2), 0);
 	else if (!valid_characters(map_lines, game->height, game->width))
-		return (ft_putstr_fd("Error: Invalid characters.\n", 2), 0);
+		return (ft_putstr_fd("Error\nInvalid characters.\n", 2), 0);
 	else if (!characters_count_check(map_lines, game->height, game->width, 'E'))
-		return (ft_putstr_fd("Error: Map must contain 1 exit 'E'.\n", 2), 0);
+		return (ft_putstr_fd("Error\nMap must contain 1 exit 'E'.\n", 2), 0);
 	else if (!characters_count_check(map_lines, game->height, game->width, 'P'))
-		return (ft_putstr_fd("Error: Map must contain 1 player 'P'.\n", 2), 0);
+		return (ft_putstr_fd("Error\nMap must contain 1 player 'P'.\n", 2), 0);
 	else if (!characters_count_check(map_lines, game->height, game->width, 'C'))
-		return (ft_putstr_fd("Error: Need at min 1 collectible 'C'.\n", 2), 0);
+		return (ft_putstr_fd("Error\nNeed at min 1 collectible 'C'.\n", 2), 0);
 	return (1);
 }

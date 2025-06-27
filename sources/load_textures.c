@@ -18,17 +18,17 @@ void	load_player_textures(t_game *game)
 			"./textures/vimpire.xpm",
 			&game->player.width, &game->player.height);
 	if (!game->player.img)
-		print_error("Error: Failed to load player texture!\n");
+		free_with_error(game, "Error\nFailed to load player texture!\n");
 	game->player_left.img = mlx_xpm_file_to_image(game->mlx,
 			"./textures/vimpire_left.xpm", &game->player_left.width,
 			&game->player_left.height);
 	if (!game->player_left.img)
-		print_error("Error: Failed to load player texture!\n");
+		free_with_error(game, "Error\nFailed to load player texture!\n");
 	game->player_right.img = mlx_xpm_file_to_image(game->mlx,
 			"./textures/vimpire_right.xpm", &game->player_right.width,
 			&game->player_right.height);
 	if (!game->player_right.img)
-		print_error("Error: Failed to load player texture!\n");
+		free_with_error(game, "Error\nFailed to load player texture!\n");
 	game->current = game->player;
 }
 
@@ -42,22 +42,22 @@ void	load_collectible_textures(t_game *game)
 			"./textures/collectible.xpm",
 			&game->anim.collect[0].width, &game->anim.collect[0].height);
 	if (!game->anim.collect[0].img)
-		print_error("Error: Failed to load collectible texture!\n");
+		free_with_error(game, "Error\nFailed to load collectible texture!\n");
 	game->anim.collect[1].img = mlx_xpm_file_to_image(game->mlx,
 			"./textures/coll2.xpm",
 			&game->anim.collect[1].width, &game->anim.collect[1].height);
 	if (!game->anim.collect[1].img)
-		print_error("Error: Failed to load collectible texture!\n");
+		free_with_error(game, "Error\nFailed to load collectible texture!\n");
 	game->anim.collect[2].img = mlx_xpm_file_to_image(game->mlx,
 			"./textures/coll3.xpm",
 			&game->anim.collect[2].width, &game->anim.collect[2].height);
 	if (!game->anim.collect[2].img)
-		print_error("Error: Failed to load collectible texture!\n");
+		free_with_error(game, "Error\nFailed to load collectible texture!\n");
 	game->anim.collect[3].img = mlx_xpm_file_to_image(game->mlx,
 			"./textures/coll4.xpm",
 			&game->anim.collect[3].width, &game->anim.collect[3].height);
 	if (!game->anim.collect[3].img)
-		print_error("Error: Failed to load collectible texture!\n");
+		free_with_error(game, "Error\nFailed to load collectible texture!\n");
 }
 
 void	load_environment_textures(t_game *game)
@@ -65,16 +65,16 @@ void	load_environment_textures(t_game *game)
 	game->wall.img = mlx_xpm_file_to_image(game->mlx, "./textures/wall.xpm",
 			&game->wall.width, &game->wall.height);
 	if (!game->wall.img)
-		print_error("Error: Failed to load wall texture!\n");
+		free_with_error(game, "Error\nFailed to load wall texture!\n");
 	game->empty_space.img = mlx_xpm_file_to_image(game->mlx,
 			"./textures/empty_space.xpm",
 			&game->empty_space.width, &game->empty_space.height);
 	if (!game->empty_space.img)
-		print_error("Error: Failed to load empty space texture!\n");
+		free_with_error(game, "Error\nFailed to load empty space texture!\n");
 	game->exit.img = mlx_xpm_file_to_image(game->mlx, "./textures/exit.xpm",
 			&game->exit.width, &game->exit.height);
 	if (!game->exit.img)
-		print_error("Error: Failed to load exit texture!\n");
+		free_with_error(game, "Error\nFailed to load exit texture!\n");
 }
 
 void	load_enemy_textures(t_game *game)
@@ -83,22 +83,22 @@ void	load_enemy_textures(t_game *game)
 			"./textures/enemy.xpm",
 			&game->anim.enemy[0].width, &game->anim.enemy[0].height);
 	if (!game->anim.enemy[0].img)
-		print_error("Error: Failed to load enemy texture!\n");
+		free_with_error(game, "Error\nFailed to load enemy texture!\n");
 	game->anim.enemy[1].img = mlx_xpm_file_to_image(game->mlx,
 			"./textures/enemy2.xpm",
 			&game->anim.enemy[1].width, &game->anim.enemy[1].height);
 	if (!game->anim.enemy[1].img)
-		print_error("Error: Failed to load enemy texture!\n");
+		free_with_error(game, "Error\nFailed to load enemy texture!\n");
 	game->anim.enemy[2].img = mlx_xpm_file_to_image(game->mlx,
 			"./textures/enemy3.xpm",
 			&game->anim.enemy[2].width, &game->anim.enemy[2].height);
 	if (!game->anim.enemy[2].img)
-		print_error("Error: Failed to load enemy texture!\n");
+		free_with_error(game, "Error\nFailed to load enemy texture!\n");
 	game->anim.enemy[3].img = mlx_xpm_file_to_image(game->mlx,
 			"./textures/enemy4.xpm",
 			&game->anim.enemy[3].width, &game->anim.enemy[3].height);
 	if (!game->anim.enemy[3].img)
-		print_error("Error: Failed to load enemy texture!\n");
+		free_with_error(game, "Error\nFailed to load enemy texture!\n");
 }
 
 void	load_textures(t_game *game)

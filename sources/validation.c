@@ -6,7 +6,7 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:24:27 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/23 18:15:32 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/27 15:54:51 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ void	parse_map(t_game *game, int fd, char *line)
 		close(fd);
 		free(line);
 		free(game);
-		print_error("Error: Map file is empty.\n");
+		print_error("Error\nMap file is empty.\n");
 	}
 	if (*line == '\n')
 	{
 		close(fd);
 		free(game);
-		print_error("Error: Invalid map format.\n");
+		print_error("Error\nInvalid map format.\n");
 	}
 	game->map = ft_split(line, '\n');
 	if (!game->map)
@@ -70,7 +70,7 @@ void	parse_map(t_game *game, int fd, char *line)
 		free(line);
 		free_map(game->map);
 		free(game);
-		print_error("Error: Invalid map format or malloc error.\n");
+		print_error("Error\nInvalid map format or malloc error.\n");
 	}
 }
 
@@ -90,7 +90,7 @@ void	validate_map(t_game *game, int fd, char *line)
 		free(line);
 		free_map(game->map);
 		free(game);
-		print_error("Error: Map has unreachable collectibles or exit.\n");
+		print_error("Error\nMap has unreachable collectibles or exit.\n");
 	}
 	if (!map_size(game))
 	{
@@ -98,7 +98,7 @@ void	validate_map(t_game *game, int fd, char *line)
 		free(line);
 		free_map(game->map);
 		free(game);
-		print_error("Error: Map is too big.\n");
+		print_error("Error\nMap is too big.\n");
 	}
 }
 
@@ -111,7 +111,7 @@ char	**load_map(t_game *game, char *path)
 	if (fd < 0)
 	{
 		free(game);
-		print_error("Error: Can't open file.\n");
+		print_error("Error\nCan't open file.\n");
 	}
 	line = get_map_lines(fd);
 	parse_map(game, fd, line);

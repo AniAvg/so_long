@@ -6,7 +6,7 @@
 /*   By: anavagya <anavgya@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 18:28:11 by anavagya          #+#    #+#             */
-/*   Updated: 2025/06/25 18:49:57 by anavagya         ###   ########.fr       */
+/*   Updated: 2025/06/27 15:38:47 by anavagya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	free_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->exit.img);
 	if (game->mlx && game->mlx_win)
 		mlx_destroy_window(game->mlx, game->mlx_win);
+	free_enemy_images(game);
 }
 
 void	free_game(t_game *game)
@@ -74,7 +75,6 @@ void	free_game(t_game *game)
 	if (game->map)
 		free_map(game->map);
 	free_images(game);
-	free_enemy_images(game);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
