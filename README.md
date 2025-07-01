@@ -31,12 +31,13 @@ Each map must follow these rules:
 
 
 ### ✅ Example Map
-
+```
 111111
 1P0C01
 100001
 1C0E11
 111111
+```
 
 
 ## ✨ Bonus Features
