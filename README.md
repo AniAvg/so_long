@@ -45,3 +45,9 @@ Each map must follow these rules:
 - 🐍 **Enemy** – Added a patrolling enemy that causes the player to lose the game if they touch it.
 - 🌟 **Animations** – Implemented basic sprite animations for smoother visual effects.
 - ⏱️ **Move Counter on Screen** – The number of player moves is displayed on the game window in real time.
+
+---
+
+![Mandatory](./images/so_long_mandatory.png)
+
+![Bonus](./images/so_long_bonus.png)
