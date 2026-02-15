@@ -48,6 +48,6 @@ Each map must follow these rules:
 
 ---
 
-![Mandatory](./images/so_long_mandatory.png)
+![Mandatory](./images/so_long_mandatory.jpg)
 
-![Bonus](./images/so_long_bonus.png)
+![Bonus](./images/so_long_bonus.jpg)
